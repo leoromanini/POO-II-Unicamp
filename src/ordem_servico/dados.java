@@ -1,5 +1,5 @@
 package ordem_servico;
-import com.mysql.jdbc.PreparedStatement;
+//import com.mysql.jdbc.PreparedStatement;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
@@ -12,8 +12,8 @@ public class dados{
         try{ 
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection
-                ("jdbc:mysql://"+"mysql23.redehost.com.br:41890"+"/"+"cvalentina",
-                "cvalentina","Janaina@19");
+                ("jdbc:mysql://"+"172.245.248.177:3306"+"/"+"faculdade_01",
+                "nomeBD","facul01");
             retorno = true;
         }
         catch(ClassNotFoundException e)

@@ -18,21 +18,24 @@ public class Frame_produto extends javax.swing.JFrame {
     /**
      * Creates new form Frame_Consultar
      */
-    
-    DefaultTableModel modelotabela =  (DefaultTableModel)  (new DefaultTableModel());
-                
+    DefaultTableModel modelotabela = (DefaultTableModel) (new DefaultTableModel());
+
     public Frame_produto() {
         initComponents();
         jTextField3.setEditable(false);
-        DefaultTableModel modelotabela = (DefaultTableModel) (new DefaultTableModel(){public boolean isCellEditable(int row, int column){return false;}});
+        DefaultTableModel modelotabela = (DefaultTableModel) (new DefaultTableModel() {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        });
         jTable1.setModel(modelotabela);
-        
+
         modelotabela.setColumnCount(3);
         modelotabela.setRowCount(0);
-        
-         jTable1.getColumnModel().getColumn(0).setHeaderValue("Cor");
-         jTable1.getColumnModel().getColumn(1).setHeaderValue("Quantidade");
-         jTable1.getColumnModel().getColumn(2).setHeaderValue("Tamanho");
+
+        jTable1.getColumnModel().getColumn(0).setHeaderValue("Cor");
+        jTable1.getColumnModel().getColumn(1).setHeaderValue("Quantidade");
+        jTable1.getColumnModel().getColumn(2).setHeaderValue("Tamanho");
     }
 
     /**
@@ -58,13 +61,9 @@ public class Frame_produto extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         jTextField5 = new javax.swing.JTextField();
@@ -136,8 +135,6 @@ public class Frame_produto extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Cor:");
-
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -145,13 +142,7 @@ public class Frame_produto extends javax.swing.JFrame {
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel6.setText("Quantidade:");
-
-        jLabel7.setText("Tamanho:");
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
@@ -277,17 +268,11 @@ public class Frame_produto extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel5)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel7))
+                                    .addComponent(jLabel6)
                                     .addGap(26, 26, 26)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -354,59 +339,48 @@ public class Frame_produto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton9)
-                            .addComponent(jButton8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                        .addComponent(jButton8))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jButton5)
+                .addGap(24, 24, 24))
         );
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...","Blusa", "Calça", "Saia", "Shorts", "Vestido", "Macação", "Macaquinho","Body","Top","Chopped","Camisa","Jaqueta","Chapéu","Bolsa","Carteira","Anel","Brinco","Gargantilha","Pulseira","Cinto","Lenço","Bracelete","Coleira","Boné" }));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Selecione...", "Preto", "Branco", "Offwhite", "Dourado","Prata","Rosa","Azul","Verde","Amarelo","Terra","Marsala","Jeans","Coral","Militar","Turquesa","Pêssego","Laranja","Azul Marinho","Fendi","Estampado" }));
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Selecione...", "PP", "P", "M", "G","GG" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...","Workstation", "Notebook", "Site", "Macbook", "GPS", "Televisão", "Nobreak" }));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-       dados d = new dados();
-        
-            if (d.conecta()){
-                System.out.println("Conectado com sucesso!");
-            }else {
-                System.out.println("Erro ao conectar!");
-            }
-            
+        dados d = new dados();
+
+        if (d.conecta()) {
+            System.out.println("Conectado com sucesso!");
+        } else {
+            System.out.println("Erro ao conectar!");
+        }
+
         ResultSet rs = null;
-        
-        rs = d.consulta("select * from cprodutos where referencia = '"+jTextField10.getText()+"'");
-        
+
+        rs = d.consulta("select * from cprodutos where referencia = '" + jTextField10.getText() + "'");
+
         try {
-            while (rs.next()){
-                d.atualiza("cprodutos", "categoria = '"+jComboBox1.getSelectedItem()+"'", "referencia = '"+jTextField10.getText()+"'");
-                d.atualiza("cprodutos", "descricao = '"+jTextArea2.getText()+"'", "referencia = '"+jTextField10.getText()+"'");
-                d.atualiza("cprodutos", "descricao = '"+jTextArea2.getText()+"'", "referencia = '"+jTextField10.getText()+"'");
-                d.atualiza("cprodutos", "valor_compra = '"+jTextField2.getText()+"'", "referencia = '"+jTextField10.getText()+"'");
-                d.atualiza("cprodutos", "margem = '"+jTextField5.getText()+"'", "referencia = '"+jTextField10.getText()+"'");
-                d.atualiza("cprodutos", "valor_venda = '"+jTextField3.getText()+"'", "referencia = '"+jTextField10.getText()+"'");
-                d.atualiza("cprodutos", "referencia = '"+jTextField1.getText()+"'", "referencia = '"+jTextField10.getText()+"'");
+            while (rs.next()) {
+                d.atualiza("cprodutos", "categoria = '" + jComboBox1.getSelectedItem() + "'", "referencia = '" + jTextField10.getText() + "'");
+                d.atualiza("cprodutos", "descricao = '" + jTextArea2.getText() + "'", "referencia = '" + jTextField10.getText() + "'");
+                d.atualiza("cprodutos", "descricao = '" + jTextArea2.getText() + "'", "referencia = '" + jTextField10.getText() + "'");
+                d.atualiza("cprodutos", "valor_compra = '" + jTextField2.getText() + "'", "referencia = '" + jTextField10.getText() + "'");
+                d.atualiza("cprodutos", "margem = '" + jTextField5.getText() + "'", "referencia = '" + jTextField10.getText() + "'");
+                d.atualiza("cprodutos", "valor_venda = '" + jTextField3.getText() + "'", "referencia = '" + jTextField10.getText() + "'");
+                d.atualiza("cprodutos", "referencia = '" + jTextField1.getText() + "'", "referencia = '" + jTextField10.getText() + "'");
             }
-        }catch(Exception e){
-            System.out.println("Houve um erro: "+e);
+        } catch (Exception e) {
+            System.out.println("Houve um erro: " + e);
         }
     }//GEN-LAST:event_jButton2MouseClicked
 
@@ -419,10 +393,10 @@ public class Frame_produto extends javax.swing.JFrame {
 
         d.conecta();
 
-        if (!jTextField1.getText().isEmpty() && !jComboBox1.getSelectedItem().equals("Selecione...")){
-            String codigo =(jTextField1.getText().toUpperCase());
-            d.insere_produto("cprodutos", (String)jComboBox1.getSelectedItem(),codigo, jTextArea2.getText(),jTextField2.getText(),jTextField5.getText(),jTextField3.getText());
-        }else{
+        if (!jTextField1.getText().isEmpty() && !jComboBox1.getSelectedItem().equals("Selecione...")) {
+            String codigo = (jTextField1.getText().toUpperCase());
+            d.insere_produto("cprodutos", (String) jComboBox1.getSelectedItem(), codigo, jTextArea2.getText(), jTextField2.getText(), jTextField5.getText(), jTextField3.getText());
+        } else {
             JOptionPane.showMessageDialog(rootPane, "DIGITE A REFERÊNCIA E SELECIONE UMA CATEGORIA!", "ERRO", WIDTH, null);
         }
 
@@ -434,23 +408,20 @@ public class Frame_produto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jComboBox1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox1FocusLost
-        if (jComboBox1.getSelectedItem().equals("Calçado")){
-            jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "34", "35", "36", "37", "38", "39"
-            , "40", "41", "42"}));
-        }
+
     }//GEN-LAST:event_jComboBox1FocusLost
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        if ((!jTextField2.getText().isEmpty()) && (!jTextField5.getText().isEmpty())){         
+        if ((!jTextField2.getText().isEmpty()) && (!jTextField5.getText().isEmpty())) {
             String vc = jTextField2.getText();
-            vc = vc.replaceAll(",", ".");          
+            vc = vc.replaceAll(",", ".");
             String margem = jTextField5.getText();
-            margem = margem.replaceAll(",", ".");          
-            jTextField3.setText(String.valueOf(Double.parseDouble(margem) * Double.parseDouble(vc)) );
-        } else{
+            margem = margem.replaceAll(",", ".");
+            jTextField3.setText(String.valueOf(Double.parseDouble(margem) * Double.parseDouble(vc)));
+        } else {
             JOptionPane.showMessageDialog(rootPane, "DIGITE O VALOR DE COMPRA E A MARGEM!", "AVISO", WIDTH);
         }
-            
+
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseEntered
@@ -458,193 +429,167 @@ public class Frame_produto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4MouseEntered
 
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
-                
-            dados d = new dados();
-        
-            if (d.conecta()){
-                System.out.println("Conectado com sucesso!");
-            }else {
-                System.out.println("Erro ao conectar!");
-            }
-            ResultSet rs = null;
-            
-            rs = d.consulta("select count(*) from cprodutos where referencia = '"+jTextField1.getText()+"'");
-            
-            try {
-                while(rs.next()){
-                    
-                    if (!jTextField1.getText().isEmpty() && !rs.getString("count(*)").equals("0")){
-                        
-                         rs = d.consulta("select cod_produto from cprodutos where referencia = '"+jTextField1.getText()+"'");
-            
-                            try {
-                                while (rs.next()){
-                                    d.insere_estoque("cestoque",rs.getString("cod_produto"), (String)jComboBox2.getSelectedItem(), 
-                                            Integer.parseInt(jTextField4.getText()), (String) jComboBox3.getSelectedItem()); 
-                                }
 
-                            }catch(Exception e){
-                                System.out.print("Houve um erro: "+e);
-                            }
-                        
-                            rs = d.consulta("select cor,quantidade,tamanho "
-                           + "from cestoque "
-                           + "where cod_produto = ("
-                           + "select cod_produto "
-                           + "from cprodutos "
-                           + "where referencia = '"+jTextField1.getText()+"')");
-            
-                            jTable1.setModel(modelotabela);
-                            modelotabela.setColumnCount(3);
-                            modelotabela.setRowCount(0);
-            
-                            jTable1.getColumnModel().getColumn(0).setHeaderValue("Cor");
-                            jTable1.getColumnModel().getColumn(1).setHeaderValue("Quantidade");
-                            jTable1.getColumnModel().getColumn(2).setHeaderValue("Tamanho");
-            
-                                int linha = 0;
-                                try{
-                                    while (rs.next()){       
-                                        modelotabela.addRow(new String [modelotabela.getColumnCount()]);
-                                        modelotabela.setValueAt(rs.getString("cor"),linha,0);
-                                        modelotabela.setValueAt(rs.getString("quantidade"),linha,1);
-                                        modelotabela.setValueAt(rs.getString("tamanho"),linha,2);
-                                        linha = linha+1;
-                                    }
-                                }catch(Exception e){
-                                   System.out.print("Houve um erro: "+e);
-                                }
-                
-                    }else{
-                        JOptionPane.showMessageDialog(rootPane, "NENHUM REGISTRO ENCONTRADO PARA REALIZAR A OPERAÇÃO!", null, WIDTH);
+        dados d = new dados();
+
+        if (d.conecta()) {
+            System.out.println("Conectado com sucesso!");
+        } else {
+            System.out.println("Erro ao conectar!");
+        }
+        ResultSet rs = null;
+
+        rs = d.consulta("select count(*) from cprodutos where referencia = '" + jTextField1.getText() + "'");
+
+        try {
+            while (rs.next()) {
+
+                if (!jTextField1.getText().isEmpty() && !rs.getString("count(*)").equals("0")) {
+
+                    rs = d.consulta("select cod_produto from cprodutos where referencia = '" + jTextField1.getText() + "'");
+
+                    try {
+                        while (rs.next()) {
+                            d.insere_estoque("cestoque", rs.getString("cod_produto"), (String) jComboBox2.getSelectedItem(),
+                                    Integer.parseInt(jTextField4.getText()), (String) jComboBox3.getSelectedItem());
+                        }
+
+                    } catch (Exception e) {
+                        System.out.print("Houve um erro: " + e);
                     }
-                    
-                }                
-            }catch (Exception e){
-                System.out.println("Houve um erro: "+e);
+
+                    rs = d.consulta("select cor,quantidade,tamanho "
+                            + "from cestoque "
+                            + "where cod_produto = ("
+                            + "select cod_produto "
+                            + "from cprodutos "
+                            + "where referencia = '" + jTextField1.getText() + "')");
+
+                    jTable1.setModel(modelotabela);
+                    modelotabela.setColumnCount(3);
+                    modelotabela.setRowCount(0);
+
+                    jTable1.getColumnModel().getColumn(0).setHeaderValue("Cor");
+                    jTable1.getColumnModel().getColumn(1).setHeaderValue("Quantidade");
+                    jTable1.getColumnModel().getColumn(2).setHeaderValue("Tamanho");
+
+                    int linha = 0;
+                    try {
+                        while (rs.next()) {
+                            modelotabela.addRow(new String[modelotabela.getColumnCount()]);
+                            modelotabela.setValueAt(rs.getString("cor"), linha, 0);
+                            modelotabela.setValueAt(rs.getString("quantidade"), linha, 1);
+                            modelotabela.setValueAt(rs.getString("tamanho"), linha, 2);
+                            linha = linha + 1;
+                        }
+                    } catch (Exception e) {
+                        System.out.print("Houve um erro: " + e);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "NENHUM REGISTRO ENCONTRADO PARA REALIZAR A OPERAÇÃO!", null, WIDTH);
+                }
+
             }
-            
-            
-           
-            
-            
-         
-            
-            
-                
-                
-   
-               
-                
-                
+        } catch (Exception e) {
+            System.out.println("Houve um erro: " + e);
+        }
+
                 //linha = modelotabela.getRowCount()+1;
-               
-                
-                
-                
-                
                 //modelotabela.setValueAt(jComboBox2.getSelectedItem(), linha, 0);
-                
-             
-                
                 //modelotabela.addRow(new String [modelotabela.getColumnCount()]);
-                //modelotabela.setValueAt(jComboBox2.getSelectedItem(),0,0);
-                //modelotabela.setValueAt(retorno.getString("preco"),linha,1);
-               // modelotabela.setValueAt(retorno.getString("quantidade"),linha,2);
-               
-                
-                
-            
-            
-        
-        
+        //modelotabela.setValueAt(jComboBox2.getSelectedItem(),0,0);
+        //modelotabela.setValueAt(retorno.getString("preco"),linha,1);
+        // modelotabela.setValueAt(retorno.getString("quantidade"),linha,2);
+
     }//GEN-LAST:event_jButton8MouseClicked
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
-         dados d = new dados();
-        
-        if (d.conecta()){
+        dados d = new dados();
+
+        if (d.conecta()) {
             System.out.println("Conectado com sucesso!");
-        }else {
+        } else {
             System.out.println("Erro ao conectar!");
         }
-        
+
         ResultSet rs = null;
-                
-        if (!jTextField1.getText().isEmpty()){
-            rs = d.consulta("select count(*) from cprodutos where referencia like '"+jTextField1.getText()+"'"); 
-            
-            try{
-                while(rs.next()){
-                    if (rs.getString("count(*)").equals("1")){
+
+        if (!jTextField1.getText().isEmpty()) {
+            rs = d.consulta("select count(*) from cprodutos where referencia like '" + jTextField1.getText() + "'");
+
+            try {
+                while (rs.next()) {
+                    if (rs.getString("count(*)").equals("1")) {
                         int resp = 0;
                         resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja excluir?", "Confirmar", resp, WIDTH);
-                         if (resp==JOptionPane.YES_OPTION){
-                             d.exclui("cprodutos", "referencia = '"+jTextField1.getText()+"'");
-                             JOptionPane.showMessageDialog(rootPane, "EXCLUIDO COM SUCESSO!", "AVISO", resp);
-                             jTextField10.setText(null);
-                             jComboBox1.setSelectedIndex(0);
-                             jComboBox2.setSelectedIndex(0);
-                             jComboBox3.setSelectedIndex(0);
-                             jTextField1.setText(null);
-                             jTextField2.setText(null);
-                             jTextField3.setText(null);
-                             jTextField4.setText(null);
-                             jTextField5.setText(null);
-                             jTextArea2.setText(null);
-                             jTable1.setModel(modelotabela);
-                         }else{
-                             JOptionPane.showMessageDialog(rootPane, "NENHUM REGISTRO FOI ALTERADO!", "AVISO", resp);
-                         }
-
+                        if (resp == JOptionPane.YES_OPTION) {
+                            d.exclui("cprodutos", "referencia = '" + jTextField1.getText() + "'");
+                            JOptionPane.showMessageDialog(rootPane, "EXCLUIDO COM SUCESSO!", "AVISO", resp);
+                            jTextField10.setText(null);
+                            jComboBox1.setSelectedIndex(0);
+                            jComboBox2.setSelectedIndex(0);
+                            jComboBox3.setSelectedIndex(0);
+                            jTextField1.setText(null);
+                            jTextField2.setText(null);
+                            jTextField3.setText(null);
+                            jTextField4.setText(null);
+                            jTextField5.setText(null);
+                            jTextArea2.setText(null);
+                            jTable1.setModel(modelotabela);
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "NENHUM REGISTRO FOI ALTERADO!", "AVISO", resp);
+                        }
 
                     }
                 }
-            
-            }catch(Exception e){
-                System.out.println("Houve um erro: "+e);
+
+            } catch (Exception e) {
+                System.out.println("Houve um erro: " + e);
             }
-        }else{
-          JOptionPane.showMessageDialog(rootPane, "NENHUM REGISTRO SELECIONADO!", "AVISO", WIDTH);  
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "NENHUM REGISTRO SELECIONADO!", "AVISO", WIDTH);
         }
-            
-        
-        
-        
+
+
     }//GEN-LAST:event_jButton7MouseClicked
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         jTextField10.setText(null);
-                             jComboBox1.setSelectedIndex(0);
-                             jComboBox2.setSelectedIndex(0);
-                             jComboBox3.setSelectedIndex(0);
-                             jTextField1.setText(null);
-                             jTextField2.setText(null);
-                             jTextField3.setText(null);
-                             jTextField4.setText(null);
-                             jTextField5.setText(null);
-                             jTextArea2.setText(null);
-                              DefaultTableModel modelotabela = (DefaultTableModel) (new DefaultTableModel(){public boolean isCellEditable(int row, int column){return false;}});
-                             jTable1.setModel(modelotabela);
-                            
+        jComboBox1.setSelectedIndex(0);
+        jComboBox2.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        jTextField1.setText(null);
+        jTextField2.setText(null);
+        jTextField3.setText(null);
+        jTextField4.setText(null);
+        jTextField5.setText(null);
+        jTextArea2.setText(null);
+        DefaultTableModel modelotabela = (DefaultTableModel) (new DefaultTableModel() {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        });
+        jTable1.setModel(modelotabela);
+
     }//GEN-LAST:event_jButton6MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         dados d = new dados();
-        
-        if (d.conecta()){
+
+        if (d.conecta()) {
             System.out.println("Conectado com sucesso!");
-        }else {
+        } else {
             System.out.println("Erro ao conectar!");
         }
-        
+
         ResultSet rs = null;
-        
-        rs = d.consulta("select * from cprodutos where referencia = '"+jTextField10.getText()+"'");
-        
+
+        rs = d.consulta("select * from cprodutos where referencia = '" + jTextField10.getText() + "'");
+
         try {
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 jComboBox1.setSelectedItem(rs.getString("categoria"));
                 jTextField1.setText(rs.getString("referencia"));
                 jTextArea2.setText(rs.getString("descricao"));
@@ -652,68 +597,66 @@ public class Frame_produto extends javax.swing.JFrame {
                 jTextField5.setText(rs.getString("margem"));
                 jTextField3.setText(rs.getString("valor_venda"));
             }
-            
-        }catch (Exception e){
-            System.out.println("Houve um erro: "+e);
+
+        } catch (Exception e) {
+            System.out.println("Houve um erro: " + e);
         }
-        
-        rs = d.consulta("select count(*) from cprodutos where referencia = '"+jTextField1.getText()+"'");
-        
+
+        rs = d.consulta("select count(*) from cprodutos where referencia = '" + jTextField1.getText() + "'");
+
         try {
-                while(rs.next()){
-                    
-                    if (!jTextField1.getText().isEmpty() && !rs.getString("count(*)").equals("0")){
-                        
-                            rs = d.consulta("select cor,quantidade,tamanho "
-                           + "from cestoque "
-                           + "where cod_produto = ("
-                           + "select cod_produto "
-                           + "from cprodutos "
-                           + "where referencia = '"+jTextField1.getText()+"')");
-            
-                            jTable1.setModel(modelotabela);
-                            modelotabela.setColumnCount(3);
-                            modelotabela.setRowCount(0);
-            
-                            jTable1.getColumnModel().getColumn(0).setHeaderValue("Cor");
-                            jTable1.getColumnModel().getColumn(1).setHeaderValue("Quantidade");
-                            jTable1.getColumnModel().getColumn(2).setHeaderValue("Tamanho");
-            
-                                int linha = 0;
-                                try{
-                                    while (rs.next()){       
-                                        modelotabela.addRow(new String [modelotabela.getColumnCount()]);
-                                        modelotabela.setValueAt(rs.getString("cor"),linha,0);
-                                        modelotabela.setValueAt(rs.getString("quantidade"),linha,1);
-                                        modelotabela.setValueAt(rs.getString("tamanho"),linha,2);
-                                        linha = linha+1;
-                                    }
-                                }catch(Exception e){
-                                   System.out.print("Houve um erro: "+e);
-                                }
-                
-                    }else{
-                        JOptionPane.showMessageDialog(rootPane, "NENHUM REGISTRO ENCONTRADO PARA REALIZAR A OPERAÇÃO!", null, WIDTH);
+            while (rs.next()) {
+
+                if (!jTextField1.getText().isEmpty() && !rs.getString("count(*)").equals("0")) {
+
+                    rs = d.consulta("select cor,quantidade,tamanho "
+                            + "from cestoque "
+                            + "where cod_produto = ("
+                            + "select cod_produto "
+                            + "from cprodutos "
+                            + "where referencia = '" + jTextField1.getText() + "')");
+
+                    jTable1.setModel(modelotabela);
+                    modelotabela.setColumnCount(3);
+                    modelotabela.setRowCount(0);
+
+                    jTable1.getColumnModel().getColumn(0).setHeaderValue("Cor");
+                    jTable1.getColumnModel().getColumn(1).setHeaderValue("Quantidade");
+                    jTable1.getColumnModel().getColumn(2).setHeaderValue("Tamanho");
+
+                    int linha = 0;
+                    try {
+                        while (rs.next()) {
+                            modelotabela.addRow(new String[modelotabela.getColumnCount()]);
+                            modelotabela.setValueAt(rs.getString("cor"), linha, 0);
+                            modelotabela.setValueAt(rs.getString("quantidade"), linha, 1);
+                            modelotabela.setValueAt(rs.getString("tamanho"), linha, 2);
+                            linha = linha + 1;
+                        }
+                    } catch (Exception e) {
+                        System.out.print("Houve um erro: " + e);
                     }
-                    
-                }                
-            }catch (Exception e){
-                System.out.println("Houve um erro: "+e);
+
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "NENHUM REGISTRO ENCONTRADO PARA REALIZAR A OPERAÇÃO!", null, WIDTH);
+                }
+
             }
+        } catch (Exception e) {
+            System.out.println("Houve um erro: " + e);
+        }
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
-         dados d = new dados();
-        
-        if (d.conecta()){
+        dados d = new dados();
+
+        if (d.conecta()) {
             System.out.println("Conectado com sucesso!");
-        }else {
+        } else {
             System.out.println("Erro ao conectar!");
         }
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_jButton9MouseClicked
 
     /**
@@ -769,8 +712,6 @@ public class Frame_produto extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -781,9 +722,7 @@ public class Frame_produto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
