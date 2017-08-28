@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ordem_servico;
+package ordem_servico.frames;
 
 import java.sql.ResultSet;
 import java.text.ParseException;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
+import ordem_servico.dados;
 
 /**
  *
@@ -420,7 +421,7 @@ public class Frame_cliente extends javax.swing.JFrame {
        jTextField5.setText(null);
        jTextField13.setText(null);
        jTextField9.setText(null);      
-        ConectorSqlServer d = new ConectorSqlServer();
+       ConectorSqlServer d = new ConectorSqlServer();
         
         if (d.Conectar()){
             System.out.println("Conectado com sucesso!");

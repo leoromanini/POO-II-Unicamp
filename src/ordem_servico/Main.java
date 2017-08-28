@@ -1,6 +1,8 @@
 
 package ordem_servico;
 
+import ordem_servico.frames.Frame_menu;
+
 /**
  *
  * @author Leonardo
