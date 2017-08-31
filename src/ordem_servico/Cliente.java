@@ -36,6 +36,8 @@ public class Cliente {
         this.email = email;
         this.observacao = observacao;
     }
+    
+   
 
     public int getCpf() {
         return cpf;

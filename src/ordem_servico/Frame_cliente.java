@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ordem_servico.frames;
+package ordem_servico;
 
 import java.sql.ResultSet;
 import java.text.ParseException;
@@ -277,66 +277,66 @@ public class Frame_cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        dados d = new dados();
-        
-        if (d.conecta()){
-            System.out.println("Conectado com sucesso!");
-        }else {
-            System.out.println("Erro ao conectar!");
-        };
-        
-        String cpf = jTextField1.getText();
-        String rg = jTextField8.getText();
-        String nome = null;
-        String endereco = null;
-        String cidade = null;
-        String nascimento = null;
-        String email = null;
-        String observacao = null;
-        
-        if (!jTextField2.getText().isEmpty()){
-             nome =(jTextField2.getText().toUpperCase());
-        }
-        if (!jTextField3.getText().isEmpty()){
-             endereco =(jTextField3.getText().toUpperCase());
-        }
-        if (!jTextField7.getText().isEmpty()){
-             cidade =(jTextField7.getText().toUpperCase());
-        }
-        String telefone = jTextField4.getText();
-        String celular = jTextField6.getText();
-        if (!jTextField5.getText().isEmpty()){
-             nascimento =(jTextField5.getText().toUpperCase());
-        }
-        if (!jTextField13.getText().isEmpty()){
-             email =(jTextField13.getText().toLowerCase());
-        }
-        if (!jTextField9.getText().isEmpty()){
-             observacao =(jTextField9.getText().toUpperCase());
-        }
-        
-        if (nome != null){
-            d.insere("cclientes", cpf, rg, nome, endereco, cidade, telefone, celular, nascimento,email, observacao);
-                    jTextField1.setText(null);
-                    jTextField8.setText(null);
-                    jTextField2.setText(null);
-                    jTextField3.setText(null);
-                    jTextField7.setText(null);
-                    jTextField4.setText(null);
-                    jTextField6.setText(null);
-                    jTextField5.setText(null);
-                    jTextField13.setText(null);
-                    jTextField9.setText(null);
-            
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "DIGITE O NOME DO CLIENTE!", "ERRO", WIDTH);
-        }
-        
-            
-        
-        
-            
-            
+//        dados d = new dados();
+//        
+//        if (d.conecta()){
+//            System.out.println("Conectado com sucesso!");
+//        }else {
+//            System.out.println("Erro ao conectar!");
+//        };
+//        
+//        String cpf = jTextField1.getText();
+//        String rg = jTextField8.getText();
+//        String nome = null;
+//        String endereco = null;
+//        String cidade = null;
+//        String nascimento = null;
+//        String email = null;
+//        String observacao = null;
+//        
+//        if (!jTextField2.getText().isEmpty()){
+//             nome =(jTextField2.getText().toUpperCase());
+//        }
+//        if (!jTextField3.getText().isEmpty()){
+//             endereco =(jTextField3.getText().toUpperCase());
+//        }
+//        if (!jTextField7.getText().isEmpty()){
+//             cidade =(jTextField7.getText().toUpperCase());
+//        }
+//        String telefone = jTextField4.getText();
+//        String celular = jTextField6.getText();
+//        if (!jTextField5.getText().isEmpty()){
+//             nascimento =(jTextField5.getText().toUpperCase());
+//        }
+//        if (!jTextField13.getText().isEmpty()){
+//             email =(jTextField13.getText().toLowerCase());
+//        }
+//        if (!jTextField9.getText().isEmpty()){
+//             observacao =(jTextField9.getText().toUpperCase());
+//        }
+//        
+//        if (nome != null){
+//            d.insere("cclientes", cpf, rg, nome, endereco, cidade, telefone, celular, nascimento,email, observacao);
+//                    jTextField1.setText(null);
+//                    jTextField8.setText(null);
+//                    jTextField2.setText(null);
+//                    jTextField3.setText(null);
+//                    jTextField7.setText(null);
+//                    jTextField4.setText(null);
+//                    jTextField6.setText(null);
+//                    jTextField5.setText(null);
+//                    jTextField13.setText(null);
+//                    jTextField9.setText(null);
+//            
+//        }else{
+//            JOptionPane.showMessageDialog(rootPane, "DIGITE O NOME DO CLIENTE!", "ERRO", WIDTH);
+//        }
+//        
+//            
+//        
+//        
+//            
+//            
         
         
         
@@ -347,186 +347,186 @@ public class Frame_cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField8KeyPressed
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        dados d = new dados();
-        
-        if (d.conecta()){
-            System.out.println("Conectado com sucesso!");
-        }else {
-            System.out.println("Erro ao conectar!");
-        }
-        
-        String cpf = jTextField1.getText();
-        String rg = jTextField8.getText();
-        String nome = null;
-        String endereco = null;
-        String cidade = null;
-        String nascimento = null;
-        String email = null;
-        String observacao = null;
-        
-        if (!jTextField2.getText().isEmpty()){
-             nome =(jTextField2.getText().toUpperCase());
-        }
-        if (!jTextField3.getText().isEmpty()){
-             endereco =(jTextField3.getText().toUpperCase());
-        }
-        if (!jTextField7.getText().isEmpty()){
-             cidade =(jTextField7.getText().toUpperCase());
-        }
-        String telefone = jTextField4.getText();
-        String celular = jTextField6.getText();
-        if (!jTextField5.getText().isEmpty()){
-             nascimento =(jTextField5.getText().toUpperCase());
-        }
-        if (!jTextField13.getText().isEmpty()){
-             email =(jTextField13.getText().toLowerCase());
-        }
-        if (!jTextField9.getText().isEmpty()){
-             observacao =(jTextField9.getText().toUpperCase());
-        }
-        
-        if (nome != null){
-            
-            d.atualiza("cclientes", "cpf = '"+cpf+"', rg = '"+rg+"', nome = '"+nome+"', endereco = '"+endereco+"', "
-                    + "cidade = '"+cidade+"', telefone = '"+telefone+"', celular = '"+celular+"', nascimento = '"+nascimento+"',"
-                    + "email = '"+email+"', observacao = '"+observacao+"'","nome = '"+jTextField10.getText()+"' or "
-                            + "rg = '"+jTextField11.getText()+"' or cpf = '"+jTextField12.getText()+"'");
-
-            
-                    jTextField1.setText(null);
-                    jTextField8.setText(null);
-                    jTextField2.setText(null);
-                    jTextField3.setText(null);
-                    jTextField7.setText(null);
-                    jTextField4.setText(null);
-                    jTextField6.setText(null);
-                    jTextField5.setText(null);
-                    jTextField13.setText(null);
-                    jTextField9.setText(null);
-            
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "NENHUM REGISTRO SELECIONADO!", "ERRO", WIDTH);
-        }
-        
+////        dados d = new dados();
+////        
+////        if (d.conecta()){
+////            System.out.println("Conectado com sucesso!");
+////        }else {
+////            System.out.println("Erro ao conectar!");
+////        }
+////        
+////        String cpf = jTextField1.getText();
+////        String rg = jTextField8.getText();
+////        String nome = null;
+////        String endereco = null;
+////        String cidade = null;
+////        String nascimento = null;
+////        String email = null;
+////        String observacao = null;
+////        
+////        if (!jTextField2.getText().isEmpty()){
+////             nome =(jTextField2.getText().toUpperCase());
+////        }
+////        if (!jTextField3.getText().isEmpty()){
+////             endereco =(jTextField3.getText().toUpperCase());
+////        }
+////        if (!jTextField7.getText().isEmpty()){
+////             cidade =(jTextField7.getText().toUpperCase());
+////        }
+////        String telefone = jTextField4.getText();
+////        String celular = jTextField6.getText();
+////        if (!jTextField5.getText().isEmpty()){
+////             nascimento =(jTextField5.getText().toUpperCase());
+////        }
+////        if (!jTextField13.getText().isEmpty()){
+////             email =(jTextField13.getText().toLowerCase());
+////        }
+////        if (!jTextField9.getText().isEmpty()){
+////             observacao =(jTextField9.getText().toUpperCase());
+////        }
+////        
+////        if (nome != null){
+////            
+////            d.atualiza("cclientes", "cpf = '"+cpf+"', rg = '"+rg+"', nome = '"+nome+"', endereco = '"+endereco+"', "
+////                    + "cidade = '"+cidade+"', telefone = '"+telefone+"', celular = '"+celular+"', nascimento = '"+nascimento+"',"
+////                    + "email = '"+email+"', observacao = '"+observacao+"'","nome = '"+jTextField10.getText()+"' or "
+////                            + "rg = '"+jTextField11.getText()+"' or cpf = '"+jTextField12.getText()+"'");
+////
+////            
+////                    jTextField1.setText(null);
+////                    jTextField8.setText(null);
+////                    jTextField2.setText(null);
+////                    jTextField3.setText(null);
+////                    jTextField7.setText(null);
+////                    jTextField4.setText(null);
+////                    jTextField6.setText(null);
+////                    jTextField5.setText(null);
+////                    jTextField13.setText(null);
+////                    jTextField9.setText(null);
+////            
+////        }else{
+////            JOptionPane.showMessageDialog(rootPane, "NENHUM REGISTRO SELECIONADO!", "ERRO", WIDTH);
+////        }
+////        
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-       jTextField1.setText(null);
-       jTextField8.setText(null);
-       jTextField2.setText(null);
-       jTextField3.setText(null);
-       jTextField7.setText(null);
-       jTextField4.setText(null);
-       jTextField6.setText(null);
-       jTextField5.setText(null);
-       jTextField13.setText(null);
-       jTextField9.setText(null);      
-       ConectorSqlServer d = new ConectorSqlServer();
-        
-        if (d.Conectar()){
-            System.out.println("Conectado com sucesso!");
-        }else {
-            System.out.println("Erro ao conectar!");
-        };
-        
-        ResultSet rs = null; 
-        
-        
-        if (!jTextField10.getText().isEmpty()){
-               jTextField10.setText(jTextField10.getText().toUpperCase());
-               rs = d.consulta("select * from cclientes where nome = '"+jTextField10.getText()+"'");
-        }
-        if (!jTextField11.getText().isEmpty()){
-               rs = d.consulta("select * from cclientes where rg = '"+jTextField11.getText()+"'");
-        }
-        if (!jTextField12.getText().equals("   .   .   -  ")){
-               rs = d.consulta("select * from cclientes where cpf = '"+jTextField12.getText()+"'");
-        }
-        if (rs != null){
-            
-            try{
-               
-                            while (rs.next()){
-                                jTextField1.setText(rs.getString("cpf"));
-                                jTextField8.setText(rs.getString("rg"));
-                                jTextField2.setText(rs.getString("nome"));
-                                jTextField3.setText(rs.getString("endereco"));
-                                jTextField7.setText(rs.getString("cidade"));
-                                jTextField4.setText(rs.getString("telefone"));
-                                jTextField6.setText(rs.getString("celular"));
-                                jTextField5.setText(rs.getString("nascimento"));
-                                jTextField13.setText(rs.getString("email"));
-                                jTextField9.setText(rs.getString("observacao"));
-                           }
-               
-            }catch(Exception e){
-                System.out.println("Houve um erro: "+e);
-            }
-            
-            if (jTextField2.getText().isEmpty()){
-                JOptionPane.showMessageDialog(rootPane, "NENHUM REGISTRO ENCONTADO", "AVISO", WIDTH);
-            }
-            
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "FAVOR INSERIR VALOR EM ALGUM DOS TRÊS CAMPOS", "AVISO", WIDTH);
-        }
-       
-        
+//       jTextField1.setText(null);
+//       jTextField8.setText(null);
+//       jTextField2.setText(null);
+//       jTextField3.setText(null);
+//       jTextField7.setText(null);
+//       jTextField4.setText(null);
+//       jTextField6.setText(null);
+//       jTextField5.setText(null);
+//       jTextField13.setText(null);
+//       jTextField9.setText(null);      
+//       ConectorSqlServer d = new ConectorSqlServer();
+//        
+//        if (d.Conectar()){
+//            System.out.println("Conectado com sucesso!");
+//        }else {
+//            System.out.println("Erro ao conectar!");
+//        };
+//        
+//        ResultSet rs = null; 
+//        
+//        
+//        if (!jTextField10.getText().isEmpty()){
+//               jTextField10.setText(jTextField10.getText().toUpperCase());
+//               rs = d.consulta("select * from cclientes where nome = '"+jTextField10.getText()+"'");
+//        }
+//        if (!jTextField11.getText().isEmpty()){
+//               rs = d.consulta("select * from cclientes where rg = '"+jTextField11.getText()+"'");
+//        }
+//        if (!jTextField12.getText().equals("   .   .   -  ")){
+//               rs = d.consulta("select * from cclientes where cpf = '"+jTextField12.getText()+"'");
+//        }
+//        if (rs != null){
+//            
+//            try{
+//               
+//                            while (rs.next()){
+//                                jTextField1.setText(rs.getString("cpf"));
+//                                jTextField8.setText(rs.getString("rg"));
+//                                jTextField2.setText(rs.getString("nome"));
+//                                jTextField3.setText(rs.getString("endereco"));
+//                                jTextField7.setText(rs.getString("cidade"));
+//                                jTextField4.setText(rs.getString("telefone"));
+//                                jTextField6.setText(rs.getString("celular"));
+//                                jTextField5.setText(rs.getString("nascimento"));
+//                                jTextField13.setText(rs.getString("email"));
+//                                jTextField9.setText(rs.getString("observacao"));
+//                           }
+//               
+//            }catch(Exception e){
+//                System.out.println("Houve um erro: "+e);
+//            }
+//            
+//            if (jTextField2.getText().isEmpty()){
+//                JOptionPane.showMessageDialog(rootPane, "NENHUM REGISTRO ENCONTADO", "AVISO", WIDTH);
+//            }
+//            
+//        }else{
+//            JOptionPane.showMessageDialog(rootPane, "FAVOR INSERIR VALOR EM ALGUM DOS TRÊS CAMPOS", "AVISO", WIDTH);
+//        }
+//       
+//        
         
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        dados d = new dados();
-        
-        if (d.conecta()){
-            System.out.println("Conectado com sucesso!");
-        }else {
-            System.out.println("Erro ao conectar!");
-        }
-        
-        ResultSet rs = null;
-                
-        if (!jTextField2.getText().isEmpty()){
-            rs = d.consulta("select count(*) from cclientes where nome like '"+jTextField2.getText()+"'"); 
-            
-            try{
-                while(rs.next()){
-                    System.out.print(rs.getString("count(*)"));
-                    if (rs.getString("count(*)").equals("1")){
-                        int resp = 0;
-                        resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja excluir?", "Confirmar", resp, WIDTH);
-                         if (resp==JOptionPane.YES_OPTION){
-                             d.exclui("cclientes", "nome = '"+jTextField2.getText()+"'");
-                             JOptionPane.showMessageDialog(rootPane, "EXCLUIDO COM SUCESSO!", "AVISO", resp);
-                                jTextField1.setText(null);
-                                jTextField8.setText(null);
-                                jTextField2.setText(null);
-                                jTextField3.setText(null);
-                                jTextField7.setText(null);
-                                jTextField4.setText(null);
-                                jTextField6.setText(null);
-                                jTextField5.setText(null);
-                                jTextField13.setText(null);
-                                jTextField9.setText(null);
-                         }else{
-                             JOptionPane.showMessageDialog(rootPane, "NENHUM REGISTRO FOI ALTERADO!", "AVISO", resp);
-                         }
-
-
-                    }
-                }
-            
-            }catch(Exception e){
-                System.out.println("Houve um erro: "+e);
-            }
-        }else{
-          JOptionPane.showMessageDialog(rootPane, "NENHUM REGISTRO SELECIONADO!", "AVISO", WIDTH);  
-        }
-            
-        
-        
-        
-        
+//        dados d = new dados();
+//        
+//        if (d.conecta()){
+//            System.out.println("Conectado com sucesso!");
+//        }else {
+//            System.out.println("Erro ao conectar!");
+//        }
+//        
+//        ResultSet rs = null;
+//                
+//        if (!jTextField2.getText().isEmpty()){
+//            rs = d.consulta("select count(*) from cclientes where nome like '"+jTextField2.getText()+"'"); 
+//            
+//            try{
+//                while(rs.next()){
+//                    System.out.print(rs.getString("count(*)"));
+//                    if (rs.getString("count(*)").equals("1")){
+//                        int resp = 0;
+//                        resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja excluir?", "Confirmar", resp, WIDTH);
+//                         if (resp==JOptionPane.YES_OPTION){
+//                             d.exclui("cclientes", "nome = '"+jTextField2.getText()+"'");
+//                             JOptionPane.showMessageDialog(rootPane, "EXCLUIDO COM SUCESSO!", "AVISO", resp);
+//                                jTextField1.setText(null);
+//                                jTextField8.setText(null);
+//                                jTextField2.setText(null);
+//                                jTextField3.setText(null);
+//                                jTextField7.setText(null);
+//                                jTextField4.setText(null);
+//                                jTextField6.setText(null);
+//                                jTextField5.setText(null);
+//                                jTextField13.setText(null);
+//                                jTextField9.setText(null);
+//                         }else{
+//                             JOptionPane.showMessageDialog(rootPane, "NENHUM REGISTRO FOI ALTERADO!", "AVISO", resp);
+//                         }
+//
+//
+//                    }
+//                }
+//            
+//            }catch(Exception e){
+//                System.out.println("Houve um erro: "+e);
+//            }
+//        }else{
+//          JOptionPane.showMessageDialog(rootPane, "NENHUM REGISTRO SELECIONADO!", "AVISO", WIDTH);  
+//        }
+//            
+//        
+//        
+//        
+//        
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked

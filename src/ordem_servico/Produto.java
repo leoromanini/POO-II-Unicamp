@@ -19,15 +19,16 @@ public class Produto {
     private BigDecimal valor_compra;
     private float margem;
     private BigDecimal valor_venda;
-    
-    public Produto (String des ,int qtd ,String t ,BigDecimal val_c ,float mar,BigDecimal val_v){
-        descricao = des;
-        quantidade = qtd;
-        tipo = t;
-        valor_compra = val_c;
-        margem = mar;
-        valor_venda = val_v;
+
+    public Produto(String descricao, int quantidade, String tipo, BigDecimal valor_compra, float margem, BigDecimal valor_venda) {
+        this.descricao = descricao;
+        this.quantidade = quantidade;
+        this.tipo = tipo;
+        this.valor_compra = valor_compra;
+        this.margem = margem;
+        this.valor_venda = valor_venda;
     }
+    
 
     public String getDescricao() {
         return descricao;
