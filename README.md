@@ -9,7 +9,7 @@ Utilizaremos a interface swing do java para todas as telas.
 
 
 Integrantes:
-Leonardo Henrique Romanini viado	RA: 178482	GIT: leoromanini
+Leonardo Henrique Romanini	RA: 178482	GIT: leoromanini
 Matheus de Camargo Quessada	RA: 184214	GIT: matheusquessad
-Rebecca Melim			          RA: 176519	GIT: rebeccamelim
+Rebecca Melim			RA: 176519	GIT: rebeccamelim
 
