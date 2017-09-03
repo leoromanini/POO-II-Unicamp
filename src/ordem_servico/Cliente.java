@@ -15,17 +15,17 @@ import java.util.Date;
  */
 public class Cliente {
 
-    private int cpf;
+    private String cpf;
     private String nome;
     private String rg;
     private String endereco;
     private String telefone;
     private String celular;
-    private Date nascimento;
+    private String nascimento;
     private String email;
     private String observacao;
     
-    public Cliente (int cpf,String nome,String rg,String endereco,String telefone,String celular,Date nascimento,String email,String observacao){
+    public Cliente (String cpf,String nome,String rg,String endereco,String telefone,String celular,String nascimento,String email,String observacao){
         this.cpf = cpf;
         this.nome = nome;
         this.rg = rg;
@@ -39,11 +39,11 @@ public class Cliente {
     
    
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -87,11 +87,11 @@ public class Cliente {
         this.celular = celular;
     }
 
-    public Date getNascimento() {
+    public String getNascimento() {
         return nascimento;
     }
 
-    public void setNascimento(Date nascimento) {
+    public void setNascimento(String nascimento) {
         this.nascimento = nascimento;
     }
 

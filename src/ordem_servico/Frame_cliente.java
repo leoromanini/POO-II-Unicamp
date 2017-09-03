@@ -7,6 +7,7 @@ package ordem_servico;
 
 import java.sql.ResultSet;
 import java.text.ParseException;
+import java.util.Date;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
@@ -277,45 +278,49 @@ public class Frame_cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-//        dados d = new dados();
-//        
-//        if (d.conecta()){
-//            System.out.println("Conectado com sucesso!");
-//        }else {
-//            System.out.println("Erro ao conectar!");
-//        };
-//        
-//        String cpf = jTextField1.getText();
-//        String rg = jTextField8.getText();
-//        String nome = null;
-//        String endereco = null;
-//        String cidade = null;
-//        String nascimento = null;
-//        String email = null;
-//        String observacao = null;
-//        
-//        if (!jTextField2.getText().isEmpty()){
-//             nome =(jTextField2.getText().toUpperCase());
-//        }
-//        if (!jTextField3.getText().isEmpty()){
-//             endereco =(jTextField3.getText().toUpperCase());
-//        }
-//        if (!jTextField7.getText().isEmpty()){
-//             cidade =(jTextField7.getText().toUpperCase());
-//        }
-//        String telefone = jTextField4.getText();
-//        String celular = jTextField6.getText();
-//        if (!jTextField5.getText().isEmpty()){
-//             nascimento =(jTextField5.getText().toUpperCase());
-//        }
-//        if (!jTextField13.getText().isEmpty()){
-//             email =(jTextField13.getText().toLowerCase());
-//        }
-//        if (!jTextField9.getText().isEmpty()){
-//             observacao =(jTextField9.getText().toUpperCase());
-//        }
-//        
-//        if (nome != null){
+         dados d = new dados();
+        
+         if (d.conecta()){
+            System.out.println("Conectado com sucesso!");
+        }else {
+            System.out.println("Erro ao conectar!");
+        }
+        
+        String cpf = jTextField1.getText();
+        String rg = jTextField8.getText();
+        String nome = null;
+        String endereco = null;
+        String cidade = null;
+        String nascimento = null;
+        String email = null;
+        String observacao = null;
+        
+        if (!jTextField2.getText().isEmpty()){
+             nome =(jTextField2.getText().toUpperCase());
+        }
+        if (!jTextField3.getText().isEmpty()){
+             endereco =(jTextField3.getText().toUpperCase());
+        }
+        if (!jTextField7.getText().isEmpty()){
+             cidade =(jTextField7.getText().toUpperCase());
+        }
+        String telefone = jTextField4.getText();
+        String celular = jTextField6.getText();
+        if (!jTextField5.getText().isEmpty()){
+             nascimento =(jTextField5.getText().toUpperCase());
+        }
+        if (!jTextField13.getText().isEmpty()){
+             email =(jTextField13.getText().toLowerCase());
+        }
+        if (!jTextField9.getText().isEmpty()){
+             observacao =(jTextField9.getText().toUpperCase());
+        }
+        
+        
+        
+        if (nome != null){
+            
+            Cliente cli = new Cliente(cpf,nome, rg, endereco, telefone, celular, nascimento, email, observacao);
 //            d.insere("cclientes", cpf, rg, nome, endereco, cidade, telefone, celular, nascimento,email, observacao);
 //                    jTextField1.setText(null);
 //                    jTextField8.setText(null);
@@ -327,11 +332,11 @@ public class Frame_cliente extends javax.swing.JFrame {
 //                    jTextField5.setText(null);
 //                    jTextField13.setText(null);
 //                    jTextField9.setText(null);
-//            
-//        }else{
-//            JOptionPane.showMessageDialog(rootPane, "DIGITE O NOME DO CLIENTE!", "ERRO", WIDTH);
-//        }
-//        
+            
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "DIGITE O NOME DO CLIENTE!", "ERRO", WIDTH);
+        }
+        
 //            
 //        
 //        
