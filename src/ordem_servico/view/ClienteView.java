@@ -5,7 +5,10 @@
  */
 package ordem_servico.view;
 
+import java.beans.EventHandler;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import ordem_servico.controller.ClienteController;
 
 /**
  *
@@ -18,7 +21,7 @@ public class ClienteView extends javax.swing.JFrame {
      */
     public ClienteView() {
         initComponents();
-    }    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,9 +34,13 @@ public class ClienteView extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         clienteTable = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 800));
+        getContentPane().setLayout(null);
 
         clienteTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -45,25 +52,46 @@ public class ClienteView extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(clienteTable);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 777, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(386, Short.MAX_VALUE))
-        );
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(10, 70, 777, 402);
+
+        jLabel1.setText("Nome:");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(30, 30, 31, 14);
+
+        jTextField1.setName("txtNome"); // NOI18N
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField1);
+        jTextField1.setBounds(70, 30, 380, 20);
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(460, 30, 73, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ClienteController cc = new ClienteController();
+        cc.buscarClientesByNome(this.getjTextField1().getText());
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public JTextField getjTextField1() {
+        return jTextField1;
+    }
 
     /**
      * @param args the command line arguments
@@ -100,12 +128,15 @@ public class ClienteView extends javax.swing.JFrame {
         });
     }
 
-    public JTable getClienteTable(){
+    public JTable getClienteTable() {
         return clienteTable;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable clienteTable;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
