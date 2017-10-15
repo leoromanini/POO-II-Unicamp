@@ -1,7 +1,10 @@
 
 package ordem_servico.controller;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ordem_servico.model.Cliente;
@@ -34,14 +37,25 @@ public class ClienteController {
     }
     
     private void buscarTodosClientes(){
-        ArrayList<Cliente> listaClientes = cliente.selectAll();
-        listToTableCliente(listaClientes);        
+        ArrayList<Cliente> listaClientes;
+        try {
+            listaClientes = cliente.selectAll();
+            listToTableCliente(listaClientes);   
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar todos os clientes. Para nerds: "+ex, "Ops", JOptionPane.ERROR_MESSAGE);
+        }      
     }
     
     private void buscarClientesByNome(String nome){
-        if(nome != null && nome.length() > 0){
-            ArrayList<Cliente> listaClientes = cliente.selectByNome(nome);
-            listToTableCliente(listaClientes);
+        try {
+            if (nome != null && nome.length() > 0) {
+                ArrayList<Cliente> listaClientes = cliente.selectByNome(nome);
+                listToTableCliente(listaClientes);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro na busca de cliente por nome. Para nerds: " + e, "Ops", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro geral na busca de cliente por nome. Para nerds: " + e, "Ops", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -194,7 +208,7 @@ public class ClienteController {
                 clienteView.getBtnAtualizar().setVisible(true);
                 clienteView.getBtnExcluir().setVisible(true);
             }catch(ClassCastException e){
-                JOptionPane.showMessageDialog(null, "Houve um problema ao identificar o formato do codigo na seleção. Para nerds: "+e, "Ops", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Houve um problema ao identificar o formato do codigo na seleção para exclusão. Para nerds: "+e, "Ops", JOptionPane.ERROR_MESSAGE);
             }catch(Exception e){
                 JOptionPane.showMessageDialog(null, "Houve um problema geral na exclusão. Para nerds: "+e, "Ops", JOptionPane.ERROR_MESSAGE);
             }

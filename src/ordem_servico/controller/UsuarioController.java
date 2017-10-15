@@ -148,15 +148,11 @@ public class UsuarioController {
     
     public void tableUsuarioClick(java.awt.event.MouseEvent evt){
         if (evt.getClickCount() == 2) {
-            try{
                 Integer row = usuarioView.getTableUsuario().rowAtPoint(evt.getPoint());
                 Integer id = (Integer) usuarioView.getTableUsuario().getValueAt(row, 0);
                 detalharUsuario(id);
                 usuarioView.getPanelDetalhes().setVisible(true);
                 usuarioView.getPanelNovo().setVisible(false);
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Houve um problema geral na busca. Para nerds: "+e, "Ops", JOptionPane.ERROR_MESSAGE);
-            }            
         }
     }
     

@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Os {
+
     private Integer id;
     private String titulo;
     private String dataAbertura;
@@ -16,33 +17,27 @@ public class Os {
     private Integer idUsuario;
     private Integer idCliente;
     protected Dados dados = new Dados();
-    
-    public Os(){
-                
+
+    public Os() {
+
     }
-    
-    public Os(Integer id){
-        try{
-            ResultSet rs = dados.busca("SELECT * FROM os WHERE id= " + id.toString());
-            if (rs.next()){
-                this.id = rs.getInt(1);
-                this.titulo = rs.getString(2);
-                this.dataAbertura = rs.getString(3);
-                this.prazo = rs.getString(4);
-                this.dataFinalizado = rs.getString(5);
-                this.servico = rs.getString(6);
-                this.total = rs.getFloat(7);
-                this.idTipo = rs.getInt(8);
-                this.idUsuario = rs.getInt(9);
-                this.idCliente = rs.getInt(10);
-            }
-        }catch(SQLException ex){
-            System.err.println("Erro SQL: " + ex);
-        }catch(Exception e){
-            System.err.println("Erro geral na criação de Os: " + e);
-        }        
+
+    public Os(Integer id) throws SQLException {
+        ResultSet rs = dados.busca("SELECT * FROM os WHERE id= " + id.toString());
+        if (rs.next()) {
+            this.id = rs.getInt(1);
+            this.titulo = rs.getString(2);
+            this.dataAbertura = rs.getString(3);
+            this.prazo = rs.getString(4);
+            this.dataFinalizado = rs.getString(5);
+            this.servico = rs.getString(6);
+            this.total = rs.getFloat(7);
+            this.idTipo = rs.getInt(8);
+            this.idUsuario = rs.getInt(9);
+            this.idCliente = rs.getInt(10);
+        }
     }
-    
+
     public Integer getId() {
         return id;
     }
@@ -122,61 +117,55 @@ public class Os {
     public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
-    
+
     protected boolean insertOs() {
         boolean retorno = (dados.executa("INSERT INTO os(titulo,data_abertura,prazo,data_finalizado,servico,total,id_tipo,id_usuario,id_cliente) "
-                + "VALUES('"+titulo+"','"+dataAbertura+"','"+prazo+"','"+dataFinalizado+"','"+servico+"',"+total+","+idTipo+","+idUsuario+","+idCliente+")"));
-        if (retorno){
+                + "VALUES('" + titulo + "','" + dataAbertura + "','" + prazo + "','" + dataFinalizado + "','" + servico + "'," + total + "," + idTipo + "," + idUsuario + "," + idCliente + ")"));
+        if (retorno) {
             setId(getIdInserido());
         }
         return retorno;
     }
 
     protected boolean updateOs() {
-        return (dados.executa("UPDATE os SET titulo='"+titulo+"', data_abertura='"+dataAbertura+"', prazo='"+prazo+"', data_finalizado='"+dataFinalizado+"', "
-        + "servico='"+servico+"', total="+total+", id_tipo="+idTipo+", id_usuario="+idUsuario+", id_cliente="+idCliente+" WHERE id="+id+""));
+        return (dados.executa("UPDATE os SET titulo='" + titulo + "', data_abertura='" + dataAbertura + "', prazo='" + prazo + "', data_finalizado='" + dataFinalizado + "', "
+                + "servico='" + servico + "', total=" + total + ", id_tipo=" + idTipo + ", id_usuario=" + idUsuario + ", id_cliente=" + idCliente + " WHERE id=" + id + ""));
     }
 
     protected boolean deleteOs() {
         return (dados.executa("DELETE FROM os WHERE id=" + id));
     }
-    
-    private int getIdInserido(){
+
+    private int getIdInserido() {
         ResultSet rs;
-        try{
+        try {
             rs = dados.busca("SELECT id FROM os ORDER BY id DESC LIMIT 1");
-            if(rs.next()){
-                return(rs.getInt(1));
+            if (rs.next()) {
+                return (rs.getInt(1));
             }
-        }catch(SQLException ex){
-            System.err.println("Erro SQL inserido os: "+ex);
-        }catch(Exception e){
-            System.err.println("Erro SQL inserido os: "+e);
+        } catch (SQLException ex) {
+            System.err.println("Erro SQL inserido os: " + ex);
+        } catch (Exception e) {
+            System.err.println("Erro SQL inserido os: " + e);
         }
         return 0;
     }
-        
-    private ArrayList<Os> buscaGeral(String sql){
+
+    private ArrayList<Os> buscaGeral(String sql) throws SQLException {
         ArrayList<Os> listOs = new ArrayList();
         ResultSet rsOs;
         Os os;
         rsOs = dados.busca(sql);
-        try {
-            while (rsOs.next()) {
-                os = new Os(rsOs.getInt(1));
-                listOs.add(os);
-            }
-        } catch (SQLException ex) {
-            System.err.println("Erro SQL busca oss: " + ex);
-        } catch (Exception e) {
-            System.err.println("Erro geral busca oss: " + e);
+        while (rsOs.next()) {
+            os = new Os(rsOs.getInt(1));
+            listOs.add(os);
         }
         return listOs;
     }
-    
-    public ArrayList<Os> selectAll() {
+
+    public ArrayList<Os> selectAll() throws SQLException {
         String sql = "SELECT id FROM os ORDER BY id DESC";
         return buscaGeral(sql);
     }
-    
+
 }

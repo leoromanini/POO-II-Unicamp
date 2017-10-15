@@ -3,7 +3,7 @@ package ordem_servico.model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+import javax.swing.JOptionPane;
 public class Cliente {
 
     private Integer id;
@@ -32,9 +32,9 @@ public class Cliente {
                 this.endereco = rs.getString(7);
             }
         } catch (SQLException ex) {
-            System.err.println("Erro SQL: " + ex);
+            JOptionPane.showMessageDialog(null, "Erro de Cliente na sua criação. Para nerds: "+ex, "Ops", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            System.err.println("Erro geral na criação de Cliente: " + e);
+            JOptionPane.showMessageDialog(null, "Erro geral de Cliente na sua criação. Para nerds: "+e, "Ops", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -109,30 +109,24 @@ public class Cliente {
         return (dados.executa("DELETE FROM cliente WHERE id=" + id));
     }
         
-    private ArrayList<Cliente> buscaGeral(String sql){
+    private ArrayList<Cliente> buscaGeral(String sql) throws SQLException{
         ArrayList<Cliente> listCliente = new ArrayList();
         ResultSet rsCliente;
         Cliente cliente;
         rsCliente = dados.busca(sql);
-        try {
             while (rsCliente.next()) {
                 cliente = new Cliente(rsCliente.getInt(1));
                 listCliente.add(cliente);
             }
-        } catch (SQLException ex) {
-            System.err.println("Erro SQL busca clientes: " + ex);
-        } catch (Exception e) {
-            System.err.println("Erro geral busca clientes: " + e);
-        }
         return listCliente;
     }
     
-    public ArrayList<Cliente> selectAll() {
+    public ArrayList<Cliente> selectAll() throws SQLException {
         String sql = "SELECT id FROM cliente ORDER BY id DESC";
         return buscaGeral(sql);
     }
     
-    public ArrayList<Cliente> selectByNome(String nome){
+    public ArrayList<Cliente> selectByNome(String nome) throws SQLException{
         String sql = "SELECT id FROM cliente WHERE nome LIKE '%"+nome+"%' ORDER BY id DESC";
         return buscaGeral(sql);
     }
