@@ -111,7 +111,8 @@ public class PrincipalView extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu3MouseClicked
 
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
-        
+        SobreView sw = new SobreView();
+        sw.setVisible(true);
     }//GEN-LAST:event_jMenu4MouseClicked
 
     /**
