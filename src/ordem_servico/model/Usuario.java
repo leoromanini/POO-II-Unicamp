@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Usuario {
+public class Usuario extends Pessoa{
     private Integer id;
     private String email;
     private String senha;
@@ -30,6 +30,16 @@ public class Usuario {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+    
+    @Override
+    public String getNome(){
+        return nome;
+    }
+    
+    @Override
+    public void setNome(String nome){
+        this.nome = nome;
     }
 
     public String getEmail() {

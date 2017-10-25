@@ -4,10 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-public class Cliente {
+public class Cliente extends Pessoa{
 
     private Integer id;
-    private String nome;
     private String nascimento;
     private String cpf;
     private String telefone;
@@ -46,10 +45,12 @@ public class Cliente {
         return this.id;
     }
 
+    @Override
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    @Override
     public String getNome() {
         return this.nome;
     }
