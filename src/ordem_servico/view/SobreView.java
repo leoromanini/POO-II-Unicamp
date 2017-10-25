@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,7 +24,7 @@ public class SobreView extends javax.swing.JFrame {
         initComponents();
        
         try {
-            File f = new File("readme.md");
+            File f = new File("README.md");
             FileReader fr = new FileReader(f);
             BufferedReader br = new BufferedReader(fr);
             String texto="";
@@ -37,8 +38,7 @@ public class SobreView extends javax.swing.JFrame {
           
 
         } catch (IOException e) {
-            System.out.println("###### Erro: " + e.getMessage());
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Houve um problema IO ao abrir o arquivo. Para nerds: "+e, "Ops", JOptionPane.ERROR_MESSAGE);
         }
 
     }
