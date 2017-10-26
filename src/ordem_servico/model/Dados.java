@@ -1,6 +1,19 @@
 package ordem_servico.model;
 import com.mysql.jdbc.PreparedStatement;
+import java.awt.HeadlessException;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Dados{
@@ -51,4 +64,44 @@ public class Dados{
         return rs;
     }
     
+    public void criarArquivo(String nome){
+        File arquivo = new File(nome);
+        if (arquivo.exists() == false){
+            try {
+                arquivo.createNewFile();
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "Erro de Dados IO ao criar arquivo. Para nerds: "+ex, "Ops", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+    
+    public void escrever(String nome, ArrayList<Object> objetos){
+        criarArquivo(nome);
+        try{
+            FileOutputStream fileOut = new FileOutputStream(nome);
+            ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
+            objOut.writeObject(objetos);
+            objOut.close();
+            fileOut.close();
+        }catch(IOException ex){
+            JOptionPane.showMessageDialog(null, "Erro de Dados IO ao escrever arquivo. Para nerds: "+ex, "Ops", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public ArrayList<Object> lerTodos(String nome){
+        criarArquivo(nome);
+        ArrayList<Object> listRetorno = new ArrayList();
+        try{
+            FileInputStream fileIn = new FileInputStream(nome);
+            ObjectInputStream objIn = new ObjectInputStream(fileIn);
+            listRetorno = (ArrayList) objIn.readObject();
+            objIn.close();
+            fileIn.close();
+        }catch(IOException ex){
+            JOptionPane.showMessageDialog(null, "Erro de Dados IO ao ler arquivo. Para nerds: "+ex, "Ops", JOptionPane.ERROR_MESSAGE);
+        }catch(ClassNotFoundException ex){
+            JOptionPane.showMessageDialog(null, "Erro de Dados Class ao ler arquivo. Para nerds: "+ex, "Ops", JOptionPane.ERROR_MESSAGE);
+        }
+        return listRetorno;
+    }
 }

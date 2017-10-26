@@ -1,10 +1,11 @@
 package ordem_servico.model;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class OsHardware extends Os {
+public class OsHardware extends Os implements Serializable{
 
     private String reclamacao;
     private Float maoObra;

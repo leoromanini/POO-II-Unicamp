@@ -1,10 +1,11 @@
 package ordem_servico.model;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Os {
+public class Os implements Serializable{
 
     private Integer id;
     private String titulo;
@@ -16,7 +17,7 @@ public class Os {
     private Integer idTipo;
     private Integer idUsuario;
     private Integer idCliente;
-    protected Dados dados = new Dados();
+    protected transient Dados dados = new Dados();
 
     public Os() {
 

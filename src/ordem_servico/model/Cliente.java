@@ -1,10 +1,11 @@
 package ordem_servico.model;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-public class Cliente extends Pessoa{
+public class Cliente extends Pessoa implements Serializable{
 
     private Integer id;
     private String nascimento;
@@ -12,7 +13,7 @@ public class Cliente extends Pessoa{
     private String telefone;
     private String celular;
     private String endereco;
-    private Dados dados = new Dados();
+    private transient Dados dados = new Dados();
 
     public Cliente() {
 

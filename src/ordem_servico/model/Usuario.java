@@ -1,14 +1,15 @@
 package ordem_servico.model;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Usuario extends Pessoa{
+public class Usuario extends Pessoa implements Serializable{
     private Integer id;
     private String email;
     private String senha;
-    private Dados dados = new Dados();
+    private transient Dados dados = new Dados();
     
     public Usuario(){
                 

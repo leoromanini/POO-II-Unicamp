@@ -1,10 +1,11 @@
 package ordem_servico.model;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class HardwareProduto {
+public class HardwareProduto implements Serializable{
 
     private Integer id;
     private Integer idHardware;
@@ -12,7 +13,7 @@ public class HardwareProduto {
     private Integer qtd;
     private Float preco;
     private Float total;
-    private Dados dados = new Dados();
+    private transient Dados dados = new Dados();
 
     public HardwareProduto() {
 

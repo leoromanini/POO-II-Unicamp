@@ -1,16 +1,17 @@
 package ordem_servico.model;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Produto {
+public class Produto implements Serializable{
 
     private Integer id;
     private String nome;
     private Integer qtd;
     private Float precoSugerido;
-    private Dados dados = new Dados();
+    private transient Dados dados = new Dados();
 
     public Produto() {
 

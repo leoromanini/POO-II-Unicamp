@@ -1,5 +1,8 @@
 package ordem_servico.model;
-public abstract class Pessoa {
+
+import java.io.Serializable;
+
+public abstract class Pessoa implements Serializable{
     protected String nome;
     
     protected abstract String getNome();

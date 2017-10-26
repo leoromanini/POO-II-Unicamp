@@ -1,10 +1,11 @@
 package ordem_servico.model;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class OsSoftware extends Os {
+public class OsSoftware extends Os implements Serializable{
 
     private String gitLink;
 
