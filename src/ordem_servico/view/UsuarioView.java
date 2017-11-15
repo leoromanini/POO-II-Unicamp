@@ -12,6 +12,22 @@ import ordem_servico.controller.UsuarioController;
  * @author matheus
  */
 public class UsuarioView extends javax.swing.JFrame {
+
+    public javax.swing.JTextField getTxtNovoNome() {
+        return txtNovoNome;
+    }
+
+    public void setTxtNovoNome(javax.swing.JTextField txtNovoNome) {
+        this.txtNovoNome = txtNovoNome;
+    }
+
+    public javax.swing.JTextField getTxtDetalhesNome() {
+        return txtDetalhesNome;
+    }
+
+    public void setTxtDetalhesNome(javax.swing.JTextField txtDetalhesNome) {
+        this.txtDetalhesNome = txtDetalhesNome;
+    }
     private UsuarioController usuarioController;
     
     public javax.swing.JTextField getTxtNovoEmail() {
@@ -139,26 +155,30 @@ public class UsuarioView extends javax.swing.JFrame {
         btnAtualizar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         txtDetalhesEmail = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtDetalhesNome = new javax.swing.JTextField();
         panelNovo = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtNovoEmail = new javax.swing.JTextField();
         txtNovoSenha = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        txtNovoNome = new javax.swing.JTextField();
         btnNovo = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tableUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Email", "Senha"
+                "ID", "Email", "Nome", "Senha"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -175,10 +195,13 @@ public class UsuarioView extends javax.swing.JFrame {
             tableUsuario.getColumnModel().getColumn(0).setMinWidth(100);
             tableUsuario.getColumnModel().getColumn(0).setPreferredWidth(100);
             tableUsuario.getColumnModel().getColumn(0).setMaxWidth(100);
-            tableUsuario.getColumnModel().getColumn(1).setMinWidth(500);
-            tableUsuario.getColumnModel().getColumn(1).setPreferredWidth(500);
-            tableUsuario.getColumnModel().getColumn(1).setMaxWidth(500);
-            tableUsuario.getColumnModel().getColumn(2).setResizable(false);
+            tableUsuario.getColumnModel().getColumn(1).setMinWidth(250);
+            tableUsuario.getColumnModel().getColumn(1).setPreferredWidth(250);
+            tableUsuario.getColumnModel().getColumn(1).setMaxWidth(250);
+            tableUsuario.getColumnModel().getColumn(2).setMinWidth(250);
+            tableUsuario.getColumnModel().getColumn(2).setPreferredWidth(250);
+            tableUsuario.getColumnModel().getColumn(2).setMaxWidth(250);
+            tableUsuario.getColumnModel().getColumn(3).setResizable(false);
         }
 
         panelDetalhes.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -210,6 +233,8 @@ public class UsuarioView extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setText("Nome:");
+
         javax.swing.GroupLayout panelDetalhesLayout = new javax.swing.GroupLayout(panelDetalhes);
         panelDetalhes.setLayout(panelDetalhesLayout);
         panelDetalhesLayout.setHorizontalGroup(
@@ -228,11 +253,13 @@ public class UsuarioView extends javax.swing.JFrame {
                     .addGroup(panelDetalhesLayout.createSequentialGroup()
                         .addGroup(panelDetalhesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel7))
                         .addGap(9, 9, 9)
                         .addGroup(panelDetalhesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtDetalhesEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtDetalhesSenhaAtual, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE))))
+                            .addComponent(txtDetalhesSenhaAtual, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+                            .addComponent(txtDetalhesNome))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -246,7 +273,11 @@ public class UsuarioView extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addComponent(jLabel6))
                     .addComponent(txtDetalhesEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelDetalhesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtDetalhesNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelDetalhesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtDetalhesSenhaAtual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -274,6 +305,8 @@ public class UsuarioView extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setText("Nome:");
+
         javax.swing.GroupLayout panelNovoLayout = new javax.swing.GroupLayout(panelNovo);
         panelNovo.setLayout(panelNovoLayout);
         panelNovoLayout.setHorizontalGroup(
@@ -282,9 +315,11 @@ public class UsuarioView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNovoNome)
                     .addComponent(txtNovoEmail)
                     .addComponent(txtNovoSenha)
                     .addGroup(panelNovoLayout.createSequentialGroup()
@@ -296,7 +331,11 @@ public class UsuarioView extends javax.swing.JFrame {
         panelNovoLayout.setVerticalGroup(
             panelNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelNovoLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addGroup(panelNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtNovoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtNovoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -304,7 +343,7 @@ public class UsuarioView extends javax.swing.JFrame {
                 .addGroup(panelNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtNovoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -338,14 +377,14 @@ public class UsuarioView extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(panelNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelDetalhes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(132, 132, 132)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panelDetalhes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -422,14 +461,18 @@ public class UsuarioView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelDetalhes;
     private javax.swing.JPanel panelNovo;
     private javax.swing.JTable tableUsuario;
     private javax.swing.JLabel txtDetalhesEmail;
+    private javax.swing.JTextField txtDetalhesNome;
     private javax.swing.JTextField txtDetalhesNovaSenha;
     private javax.swing.JTextField txtDetalhesSenhaAtual;
     private javax.swing.JTextField txtNovoEmail;
+    private javax.swing.JTextField txtNovoNome;
     private javax.swing.JTextField txtNovoSenha;
     // End of variables declaration//GEN-END:variables
 }

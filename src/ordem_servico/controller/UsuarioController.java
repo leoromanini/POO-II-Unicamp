@@ -45,11 +45,9 @@ public class UsuarioController {
             DefaultTableModel model = (DefaultTableModel) usuarioView.getTableUsuario().getModel();
         model.setRowCount(0);
         for(Usuario u : listUsuarios){
-            model.addRow(new Object[]{u.getId(),u.getEmail(),"*****"});
+            model.addRow(new Object[]{u.getId(),u.getEmail(),u.getNome(),"*****"});
         }
         return true;
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Houve um problema na busca de usuarios. Para nerds: "+ex, "Ops", JOptionPane.ERROR_MESSAGE);            
         } catch(Exception e){
             JOptionPane.showMessageDialog(null, "Houve um problema geral na busca. Para nerds: "+e, "Ops", JOptionPane.ERROR_MESSAGE);
         }
@@ -82,6 +80,8 @@ public class UsuarioController {
         usuarioView.getTxtDetalhesSenhaAtual().setText("");
         usuarioView.getTxtNovoEmail().setText("");
         usuarioView.getTxtNovoSenha().setText("");
+        usuarioView.getTxtNovoNome().setText("");
+        usuarioView.getTxtDetalhesNome().setText("");
     }
     
     private void detalharUsuario(Integer id){
@@ -103,6 +103,7 @@ public class UsuarioController {
     public void btnCadastrarClick(){
         usuario.setEmail(usuarioView.getTxtNovoEmail().getText());
         usuario.setSenha(usuarioView.getTxtNovoSenha().getText());
+        usuario.setNome(usuarioView.getTxtNovoNome().getText());
         if(cadastarUsuario()){
             JOptionPane.showMessageDialog(null, "Usuario cadastrado", "Feito!", JOptionPane.INFORMATION_MESSAGE);
             usuarioView.getPanelDetalhes().setVisible(false);
@@ -117,6 +118,7 @@ public class UsuarioController {
         if(usuarioView.getTxtDetalhesSenhaAtual().getText().equals(usuario.getSenha())){
             if(usuarioView.getTxtDetalhesNovaSenha().getText() != null){
                 usuario.setSenha(usuarioView.getTxtDetalhesNovaSenha().getText());
+                usuario.setNome(usuarioView.getTxtDetalhesNome().getText());
                 if(atualizarUsuario()){
                     JOptionPane.showMessageDialog(null, "Usuario atualizado", "Feito!", JOptionPane.INFORMATION_MESSAGE);
                     usuarioView.getPanelDetalhes().setVisible(false);

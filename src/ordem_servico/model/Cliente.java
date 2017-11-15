@@ -14,6 +14,7 @@ public class Cliente extends Pessoa implements Serializable{
     private String celular;
     private String endereco;
     private transient Dados dados = new Dados();
+    private transient final String arquivo = "clientes.txt";
 
     public Cliente() {
 

@@ -75,7 +75,20 @@ public class Dados{
         }
     }
     
-    public void escrever(String nome, ArrayList<Object> objetos){
+    private boolean vazio(String nome){
+        File arquivo = new File(nome);
+        if (arquivo.exists() == false) {
+            return true;
+        }else{
+            if(arquivo.length() > 0){
+                return false;
+            }else{
+                return true;
+            }
+        }
+    }
+    
+    public boolean escrever(String nome, ArrayList<Object> objetos){
         criarArquivo(nome);
         try{
             FileOutputStream fileOut = new FileOutputStream(nome);
@@ -83,15 +96,18 @@ public class Dados{
             objOut.writeObject(objetos);
             objOut.close();
             fileOut.close();
+            return true;
         }catch(IOException ex){
             JOptionPane.showMessageDialog(null, "Erro de Dados IO ao escrever arquivo. Para nerds: "+ex, "Ops", JOptionPane.ERROR_MESSAGE);
+            return false;
         }
     }
     
     public ArrayList<Object> lerTodos(String nome){
         criarArquivo(nome);
         ArrayList<Object> listRetorno = new ArrayList();
-        try{
+        if(!vazio(nome)){
+            try{
             FileInputStream fileIn = new FileInputStream(nome);
             ObjectInputStream objIn = new ObjectInputStream(fileIn);
             listRetorno = (ArrayList) objIn.readObject();
@@ -101,6 +117,7 @@ public class Dados{
             JOptionPane.showMessageDialog(null, "Erro de Dados IO ao ler arquivo. Para nerds: "+ex, "Ops", JOptionPane.ERROR_MESSAGE);
         }catch(ClassNotFoundException ex){
             JOptionPane.showMessageDialog(null, "Erro de Dados Class ao ler arquivo. Para nerds: "+ex, "Ops", JOptionPane.ERROR_MESSAGE);
+        }
         }
         return listRetorno;
     }
