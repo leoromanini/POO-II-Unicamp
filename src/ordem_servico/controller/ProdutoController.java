@@ -70,8 +70,6 @@ public class ProdutoController {
                 model.addRow(new Object[]{p.getId(),p.getNome(),p.getQtd(),p.getPrecoSugerido()});
             }
             produtoView.getTableProduto().setModel(model);
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null, "Erro ao realizar busca de produtos. Para nerds: "+e, "Ops", JOptionPane.ERROR_MESSAGE);
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Erro geral ao listar produtos. Para nerds: "+e, "Ops", JOptionPane.ERROR_MESSAGE);
         }        
@@ -83,8 +81,6 @@ public class ProdutoController {
             produtoView.getTxtDetalhesNome().setText(produto.getNome());
             produtoView.getTxtDetalhesPreco().setText(produto.getPrecoSugerido().toString());
             produtoView.getTxtDetalhesQuantidade().setText(produto.getQtd().toString());
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null, "Erro ao detalhar produto. Para nerds: "+e, "Ops", JOptionPane.ERROR_MESSAGE);
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Erro geral ao detalhar produto. Para nerds: "+e, "Ops", JOptionPane.ERROR_MESSAGE);
         }

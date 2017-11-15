@@ -55,7 +55,7 @@ public class SobreView extends javax.swing.JFrame {
         label1 = new java.awt.Label();
         textArea1 = new java.awt.TextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         label1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         label1.setName(""); // NOI18N

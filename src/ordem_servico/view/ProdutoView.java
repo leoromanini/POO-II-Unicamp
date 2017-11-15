@@ -124,7 +124,7 @@ public class ProdutoView extends javax.swing.JFrame {
         txtNovoNome = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tableProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

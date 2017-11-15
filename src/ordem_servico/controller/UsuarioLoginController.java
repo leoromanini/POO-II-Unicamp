@@ -21,7 +21,7 @@ public class UsuarioLoginController {
         usuarioLoginView.setLocationRelativeTo(null);
     }
     
-    private boolean logar(String email, String senha) throws SQLException{
+    private boolean logar(String email, String senha){
         usuario.setEmail(email);
         usuario.setSenha(senha);
         return usuario.logar();
@@ -38,8 +38,6 @@ public class UsuarioLoginController {
                 }else{
                     JOptionPane.showMessageDialog(null, "Usuario ou senha inválidos", "Ops", JOptionPane.ERROR_MESSAGE);
                 }
-            }catch(SQLException e){
-                JOptionPane.showMessageDialog(null, "Houve um problema ao buscar Usuario :( para nerds: "+e, "Ops", JOptionPane.ERROR_MESSAGE);
             }catch(Exception e){
                 JOptionPane.showMessageDialog(null, "Houve um problema geral com Usuario :( para nerds: "+e, "Ops", JOptionPane.ERROR_MESSAGE);
             }            

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Produto implements Serializable{
 
@@ -12,18 +13,23 @@ public class Produto implements Serializable{
     private Integer qtd;
     private Float precoSugerido;
     private transient Dados dados = new Dados();
-
+    private transient final String arquivo = "produtos.txt";
+    
     public Produto() {
 
     }
 
-    public Produto(Integer id) throws SQLException {
-        ResultSet rs = dados.busca("SELECT * FROM produto WHERE id= " + id.toString());
-        if (rs.next()) {
-            this.id = rs.getInt(1);
-            this.nome = rs.getString(2);
-            this.qtd = rs.getInt(3);
-            this.precoSugerido = rs.getFloat(4);
+    public Produto(Integer id) {
+        ArrayList<Object> listaObj = dados.lerTodos(arquivo);
+        Produto produto;
+        for(Object objeto:listaObj){
+            produto = (Produto) objeto;
+            if(Objects.equals(produto.getId(), id)){
+                this.id = produto.id;
+                this.nome = produto.nome;
+                this.qtd = produto.qtd;
+                this.precoSugerido = produto.precoSugerido;
+            }
         }
     }
 
@@ -60,32 +66,46 @@ public class Produto implements Serializable{
     }
 
     public boolean insertProduto() {
-        return (dados.executa("INSERT INTO produto(nome,qtd,preco_sugerido) VALUES('" + nome + "'," + qtd + "," + precoSugerido + ")"));
+        ArrayList<Object> listaAtual = dados.lerTodos(arquivo);
+        this.setId(listaAtual.size()+1);
+        listaAtual.add(this);
+        return dados.escrever(arquivo, listaAtual);
     }
 
     public boolean updateProduto() {
-        return (dados.executa("UPDATE produto SET nome='" + nome + "', qtd=" + qtd + ", preco_sugerido=" + precoSugerido + " WHERE id=" + id));
+        ArrayList<Object> listaObj = dados.lerTodos(arquivo);
+        Produto produto;
+        for(Object objeto:listaObj){
+            produto = (Produto) objeto;
+            if(produto.getId().equals(this.id)){
+                listaObj.remove(objeto);
+                listaObj.add(this);
+                return dados.escrever(arquivo, listaObj);
+            }
+        }
+        return false;
     }
 
     public boolean deleteProduto() {
-        return (dados.executa("DELETE FROM produto WHERE id=" + id));
-    }
-
-    private ArrayList<Produto> buscaGeral(String sql) throws SQLException {
-        ArrayList<Produto> listProduto = new ArrayList();
-        ResultSet rsProduto;
+        ArrayList<Object> listaObj = dados.lerTodos(arquivo);
         Produto produto;
-        rsProduto = dados.busca(sql);
-        while (rsProduto.next()) {
-            produto = new Produto(rsProduto.getInt(1));
-            listProduto.add(produto);
+        for(Object objeto:listaObj){
+            produto = (Produto) objeto;
+            if(produto.getId().equals(this.id)){
+                listaObj.remove(objeto);
+                return dados.escrever(arquivo, listaObj);
+            }
         }
-        return listProduto;
+        return false;
     }
 
-    public ArrayList<Produto> selectAll() throws SQLException {
-        String sql = "SELECT id FROM produto ORDER BY id DESC";
-        return buscaGeral(sql);
+    public ArrayList<Produto> selectAll() {
+        ArrayList<Object> listaObj = dados.lerTodos(arquivo);
+        ArrayList<Produto> listaProduto = new ArrayList();
+        for(Object objeto:listaObj){
+            listaProduto.add((Produto) objeto);
+        }
+        return listaProduto;
     }
 
 }

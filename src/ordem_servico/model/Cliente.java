@@ -33,6 +33,7 @@ public class Cliente extends Pessoa implements Serializable{
                 this.telefone = cliente.telefone;
                 this.celular = cliente.celular;
                 this.endereco = cliente.endereco;
+                this.nome = cliente.nome;
             }
         }
     }
