@@ -88,8 +88,6 @@ public class UsuarioController {
         try {
             usuario = new Usuario(id);
             usuarioView.getTxtDetalhesEmail().setText(usuario.getEmail());
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Houve um problema na busca do usuario. Para nerds: " + e, "Ops", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Houve um problema geral na busca. Para nerds: " + e, "Ops", JOptionPane.ERROR_MESSAGE);
         }        

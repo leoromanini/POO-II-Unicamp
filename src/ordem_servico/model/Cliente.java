@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 import javax.swing.JOptionPane;
 public class Cliente extends Pessoa implements Serializable{
 
@@ -21,21 +22,18 @@ public class Cliente extends Pessoa implements Serializable{
     }
 
     public Cliente(Integer id) {
-        try {
-            ResultSet rs = dados.busca("SELECT * FROM cliente WHERE id= " + id.toString());
-            if (rs.next()) {
-                this.id = rs.getInt(1);
-                this.nome = rs.getString(2);
-                this.nascimento = rs.getString(3);
-                this.cpf = rs.getString(4);
-                this.telefone = rs.getString(5);
-                this.celular = rs.getString(6);
-                this.endereco = rs.getString(7);
+        ArrayList<Object> listaObj = dados.lerTodos(arquivo);
+        Cliente cliente;
+        for(Object objeto:listaObj){
+            cliente = (Cliente) objeto;
+            if(Objects.equals(cliente.getId(), id)){
+                this.id = cliente.id;
+                this.nascimento = cliente.nascimento;
+                this.cpf = cliente.cpf;
+                this.telefone = cliente.telefone;
+                this.celular = cliente.celular;
+                this.endereco = cliente.endereco;
             }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro de Cliente na sua criação. Para nerds: "+ex, "Ops", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro geral de Cliente na sua criação. Para nerds: "+e, "Ops", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -98,40 +96,59 @@ public class Cliente extends Pessoa implements Serializable{
     }    
 
     public boolean insertCliente() {
-        return (dados.executa("INSERT INTO cliente(nome,nascimento,cpf,telefone,celular,endereco) VALUES"
-                + "('" + nome + "','" + nascimento + "','" + cpf + "','" + telefone + "','" + celular + "','" + endereco + "')"));
+        ArrayList<Object> listaAtual = dados.lerTodos(arquivo);
+        this.setId(listaAtual.size()+1);
+        listaAtual.add(this);
+        return dados.escrever(arquivo, listaAtual);
     }
 
     public boolean updateCliente() {
-        return (dados.executa("UPDATE cliente SET nome='" + nome + "', nascimento='" + nascimento + "',"
-                + " cpf='" + cpf + "', telefone='" + telefone + "', celular='" + celular + "',"
-                + " endereco='" + endereco + "' WHERE id=" + id));
+        ArrayList<Object> listaObj = dados.lerTodos(arquivo);
+        Cliente cliente;
+        for(Object objeto:listaObj){
+            cliente = (Cliente) objeto;
+            if(cliente.getId().equals(this.id)){
+                listaObj.remove(objeto);
+                listaObj.add(this);
+                return dados.escrever(arquivo, listaObj);
+            }
+        }
+        return false;
     }
 
     public boolean deleteCliente() {
-        return (dados.executa("DELETE FROM cliente WHERE id=" + id));
-    }
-        
-    private ArrayList<Cliente> buscaGeral(String sql) throws SQLException{
-        ArrayList<Cliente> listCliente = new ArrayList();
-        ResultSet rsCliente;
+        ArrayList<Object> listaObj = dados.lerTodos(arquivo);
         Cliente cliente;
-        rsCliente = dados.busca(sql);
-            while (rsCliente.next()) {
-                cliente = new Cliente(rsCliente.getInt(1));
-                listCliente.add(cliente);
+        for(Object objeto:listaObj){
+            cliente = (Cliente) objeto;
+            if(cliente.getId().equals(this.id)){
+                listaObj.remove(objeto);
+                return dados.escrever(arquivo, listaObj);
             }
-        return listCliente;
+        }
+        return false;
     }
     
-    public ArrayList<Cliente> selectAll() throws SQLException {
-        String sql = "SELECT id FROM cliente ORDER BY id DESC";
-        return buscaGeral(sql);
+    public ArrayList<Cliente> selectAll()  {
+        ArrayList<Object> listaObj = dados.lerTodos(arquivo);
+        ArrayList<Cliente> listaCliente = new ArrayList();
+        for(Object objeto:listaObj){
+            listaCliente.add((Cliente) objeto);
+        }
+        return listaCliente;
     }
     
-    public ArrayList<Cliente> selectByNome(String nome) throws SQLException{
-        String sql = "SELECT id FROM cliente WHERE nome LIKE '%"+nome+"%' ORDER BY id DESC";
-        return buscaGeral(sql);
+    public ArrayList<Cliente> selectByNome(String nome) {
+        ArrayList<Object> listaObj = dados.lerTodos(arquivo);
+        ArrayList<Cliente> listaCliente = new ArrayList();
+        Cliente cliente;
+        for(Object objeto:listaObj){
+            cliente = (Cliente) objeto;
+            if(cliente.getNome().equals(nome)){
+                listaCliente.add((Cliente) objeto);                
+            }
+        }
+        return listaCliente;
     }
     
     

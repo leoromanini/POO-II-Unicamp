@@ -38,12 +38,10 @@ public class ClienteController {
     
     private void buscarTodosClientes(){
         ArrayList<Cliente> listaClientes;
-        try {
+        
             listaClientes = cliente.selectAll();
             listToTableCliente(listaClientes);   
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar todos os clientes. Para nerds: "+ex, "Ops", JOptionPane.ERROR_MESSAGE);
-        }      
+            
     }
     
     private void buscarClientesByNome(String nome){
@@ -52,9 +50,7 @@ public class ClienteController {
                 ArrayList<Cliente> listaClientes = cliente.selectByNome(nome);
                 listToTableCliente(listaClientes);
             }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro na busca de cliente por nome. Para nerds: " + e, "Ops", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) {
+        }catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro geral na busca de cliente por nome. Para nerds: " + e, "Ops", JOptionPane.ERROR_MESSAGE);
         }
     }
