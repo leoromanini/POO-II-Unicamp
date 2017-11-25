@@ -1,8 +1,6 @@
 package ordem_servico.model;
 
 import java.io.Serializable;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -12,7 +10,7 @@ public class Produto implements Serializable{
     private String nome;
     private Integer qtd;
     private Float precoSugerido;
-    private transient Dados dados = new Dados();
+    private transient final Dados dados = new Dados();
     private transient final String arquivo = "produtos.txt";
     
     public Produto() {

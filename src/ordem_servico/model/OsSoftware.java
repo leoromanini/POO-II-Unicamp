@@ -1,23 +1,27 @@
 package ordem_servico.model;
 
 import java.io.Serializable;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class OsSoftware extends Os implements Serializable{
 
     private String gitLink;
-
+    private transient final String arquivo = "osSoftware.txt";
+    
     public OsSoftware() {
         setIdTipo(2);
     }
 
-    public OsSoftware(Integer id) throws SQLException {
+    public OsSoftware(Integer id) {
         super(id);
-        ResultSet rs = dados.busca("SELECT * FROM os_software WHERE id_os= " + id.toString());
-        if (rs.next()) {
-            this.gitLink = rs.getString(2);
+        ArrayList<Object> listaObj = dados.lerTodos(arquivo);
+        OsSoftware os;
+        for(Object objeto:listaObj){
+            os = (OsSoftware) objeto;
+            if(Objects.equals(os.getId(), id)){
+                this.gitLink = os.gitLink;
+            }
         }
     }
 
@@ -30,33 +34,47 @@ public class OsSoftware extends Os implements Serializable{
     }
 
     public boolean insertOsSoftware() {
-        return (insertOs() && dados.executa("INSERT INTO os_software(id_os,git_link) VALUES(" + getId() + ",'" + gitLink + "')"));
+        ArrayList<Object> listaAtual = dados.lerTodos(arquivo);
+        this.setId(listaAtual.size()+1);
+        listaAtual.add(this);
+        return dados.escrever(arquivo, listaAtual);
     }
 
     public boolean updateOsSoftware() {
-        return (updateOs() && dados.executa("UPDATE os_software SET git_link='" + gitLink + "' WHERE id_os=" + getId()));
+        ArrayList<Object> listaObj = dados.lerTodos(arquivo);
+        OsSoftware os;
+        for(Object objeto:listaObj){
+            os = (OsSoftware) objeto;
+            if(os.getId().equals(this.getId())){
+                listaObj.remove(objeto);
+                listaObj.add(this);
+                return dados.escrever(arquivo, listaObj);
+            }
+        }
+        return false;
     }
 
     public boolean deleteOsSoftware() {
-        return (deleteOs() && dados.executa("DELETE FROM os_software WHERE id_os=" + getId()));
-    }
-
-    private ArrayList<Os> buscaGeral(String sql) throws SQLException {
-        ArrayList<Os> listOsSoftware = new ArrayList();
-        ResultSet rsOsSoftware;
-        OsSoftware osSoftware;
-        rsOsSoftware = dados.busca(sql);
-        while (rsOsSoftware.next()) {
-            osSoftware = new OsSoftware(rsOsSoftware.getInt(1));
-            listOsSoftware.add(osSoftware);
+        ArrayList<Object> listaObj = dados.lerTodos(arquivo);
+        OsSoftware os;
+        for(Object objeto:listaObj){
+            os = (OsSoftware) objeto;
+            if(os.getId().equals(this.getId())){
+                listaObj.remove(objeto);
+                return dados.escrever(arquivo, listaObj);
+            }
         }
-        return listOsSoftware;
+        return false;
     }
 
     @Override
-    public ArrayList<Os> selectAll() throws SQLException {
-        String sql = "SELECT id FROM os WHERE id_tipo = 2 ORDER BY id DESC";
-        return buscaGeral(sql);
+    public ArrayList<Os> selectAll(){
+        ArrayList<Object> listaObj = dados.lerTodos(arquivo);
+        ArrayList<Os> listaOsSoftware = new ArrayList();
+        for(Object objeto:listaObj){
+            listaOsSoftware.add((Os) objeto);
+        }
+        return listaOsSoftware;
     }
 
 }

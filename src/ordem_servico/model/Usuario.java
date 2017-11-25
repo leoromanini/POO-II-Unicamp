@@ -1,8 +1,6 @@
 package ordem_servico.model;
 
 import java.io.Serializable;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -10,7 +8,7 @@ public class Usuario extends Pessoa implements Serializable{
     private Integer id;
     private String email;
     private String senha;
-    private transient Dados dados = new Dados();
+    private transient final Dados dados = new Dados();
     private transient final String arquivo = "usuarios.txt";
     
     public Usuario(){
@@ -119,5 +117,6 @@ public class Usuario extends Pessoa implements Serializable{
         }
         return false;
     }
+    
     
 }

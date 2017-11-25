@@ -1,25 +1,29 @@
 package ordem_servico.model;
 
 import java.io.Serializable;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class OsHardware extends Os implements Serializable{
 
     private String reclamacao;
     private Float maoObra;
+    private transient final String arquivo = "osHardware.txt";
 
     public OsHardware() {
         setIdTipo(1);
     }
 
-    public OsHardware(Integer id) throws SQLException {
+    public OsHardware(Integer id){
         super(id);
-        ResultSet rs = dados.busca("SELECT * FROM os_hardware WHERE id_os= " + id.toString());
-        if (rs.next()) {
-            this.reclamacao = rs.getString(2);
-            this.maoObra = rs.getFloat(3);
+        ArrayList<Object> listaObj = dados.lerTodos(arquivo);
+        OsHardware os;
+        for(Object objeto:listaObj){
+            os = (OsHardware) objeto;
+            if(Objects.equals(os.getId(), id)){
+                this.reclamacao = os.reclamacao;
+                this.maoObra = os.maoObra;
+            }
         }
     }
 
@@ -40,33 +44,47 @@ public class OsHardware extends Os implements Serializable{
     }
 
     public boolean insertOsHardware() {
-        return (insertOs() && dados.executa("INSERT INTO os_hardware(id_os,reclamacao,mao_obra) VALUES(" + getId() + ",'" + reclamacao + "'," + maoObra + ")"));
+        ArrayList<Object> listaAtual = dados.lerTodos(arquivo);
+        this.setId(listaAtual.size()+1);
+        listaAtual.add(this);
+        return dados.escrever(arquivo, listaAtual);
     }
 
     public boolean updateOsHardware() {
-        return (updateOs() && dados.executa("UPDATE os_hardware SET reclamacao='" + reclamacao + "', mao_obra=" + maoObra + " WHERE id_os=" + getId()));
+        ArrayList<Object> listaObj = dados.lerTodos(arquivo);
+        OsHardware os;
+        for(Object objeto:listaObj){
+            os = (OsHardware) objeto;
+            if(os.getId().equals(this.getId())){
+                listaObj.remove(objeto);
+                listaObj.add(this);
+                return dados.escrever(arquivo, listaObj);
+            }
+        }
+        return false;
     }
 
     public boolean deleteOsHardware() {
-        return (deleteOs() && dados.executa("DELETE FROM os_hardware WHERE id_os=" + getId()));
-    }
-
-    private ArrayList<Os> buscaGeral(String sql) throws SQLException {
-        ArrayList<Os> listOsHardware = new ArrayList();
-        ResultSet rsOsHardware;
-        OsHardware osHardware;
-        rsOsHardware = dados.busca(sql);
-        while (rsOsHardware.next()) {
-            osHardware = new OsHardware(rsOsHardware.getInt(1));
-            listOsHardware.add(osHardware);
+        ArrayList<Object> listaObj = dados.lerTodos(arquivo);
+        OsHardware os;
+        for(Object objeto:listaObj){
+            os = (OsHardware) objeto;
+            if(os.getId().equals(this.getId())){
+                listaObj.remove(objeto);
+                return dados.escrever(arquivo, listaObj);
+            }
         }
-        return listOsHardware;
+        return false;
     }
 
     @Override
-    public ArrayList<Os> selectAll() throws SQLException {
-        String sql = "SELECT id FROM os WHERE id_tipo = 1 ORDER BY id DESC";
-        return buscaGeral(sql);
+    public ArrayList<Os> selectAll() {
+        ArrayList<Object> listaObj = dados.lerTodos(arquivo);
+        ArrayList<Os> listaOsHardware = new ArrayList();
+        for(Object objeto:listaObj){
+            listaOsHardware.add((Os) objeto);
+        }
+        return listaOsHardware;
     }
 
 }

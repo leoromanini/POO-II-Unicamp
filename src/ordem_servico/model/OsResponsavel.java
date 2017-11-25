@@ -1,9 +1,8 @@
 package ordem_servico.model;
 
 import java.io.Serializable;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class OsResponsavel implements Serializable{
 
@@ -12,18 +11,23 @@ public class OsResponsavel implements Serializable{
     private Integer idOs;
     private String data;
     private transient Dados dados = new Dados();
+    private transient final String arquivo = "osResponsavel.txt";
 
     public OsResponsavel() {
 
     }
 
-    public OsResponsavel(Integer id) throws SQLException {
-        ResultSet rs = dados.busca("SELECT * FROM os_responsavel WHERE id= " + id.toString());
-        if (rs.next()) {
-            this.id = rs.getInt(1);
-            this.idUsuario = rs.getInt(2);
-            this.idOs = rs.getInt(3);
-            this.data = rs.getString(4);
+    public OsResponsavel(Integer id){
+        ArrayList<Object> listaObj = dados.lerTodos(arquivo);
+        OsResponsavel os;
+        for(Object objeto:listaObj){
+            os = (OsResponsavel) objeto;
+            if(Objects.equals(os.getId(), id)){
+                this.id = os.id;
+                this.idUsuario = os.idUsuario;
+                this.idOs = os.idOs;
+                this.data = os.data;
+            }
         }
     }
 
@@ -60,24 +64,19 @@ public class OsResponsavel implements Serializable{
     }
 
     public boolean insertOsResponsavel() {
-        return (dados.executa("INSERT INTO os_responsavel(id_usuario,id_os,data) VALUES(" + idUsuario + "," + idOs + ",'" + data + "')"));
+        ArrayList<Object> listaAtual = dados.lerTodos(arquivo);
+        this.setId(listaAtual.size()+1);
+        listaAtual.add(this);
+        return dados.escrever(arquivo, listaAtual);
     }
 
-    private ArrayList<OsResponsavel> buscaGeral(String sql) throws SQLException {
-        ArrayList<OsResponsavel> listOsResponsavel = new ArrayList();
-        ResultSet rsOsResponsavel;
-        OsResponsavel osResponsavel;
-        rsOsResponsavel = dados.busca(sql);
-        while (rsOsResponsavel.next()) {
-            osResponsavel = new OsResponsavel(rsOsResponsavel.getInt(1));
-            listOsResponsavel.add(osResponsavel);
+    public ArrayList<OsResponsavel> selectAll(){
+        ArrayList<Object> listaObj = dados.lerTodos(arquivo);
+        ArrayList<OsResponsavel> listaOsResponsavel = new ArrayList();
+        for(Object objeto:listaObj){
+            listaOsResponsavel.add((OsResponsavel) objeto);
         }
-        return listOsResponsavel;
-    }
-
-    public ArrayList<OsResponsavel> selectAll() throws SQLException {
-        String sql = "SELECT id FROM os_responsavel ORDER BY id DESC";
-        return buscaGeral(sql);
+        return listaOsResponsavel;
     }
 
 }

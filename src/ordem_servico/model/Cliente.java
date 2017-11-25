@@ -1,11 +1,8 @@
 package ordem_servico.model;
 
 import java.io.Serializable;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
-import javax.swing.JOptionPane;
 public class Cliente extends Pessoa implements Serializable{
 
     private Integer id;
@@ -14,7 +11,7 @@ public class Cliente extends Pessoa implements Serializable{
     private String telefone;
     private String celular;
     private String endereco;
-    private transient Dados dados = new Dados();
+    private transient final Dados dados = new Dados();
     private transient final String arquivo = "clientes.txt";
 
     public Cliente() {

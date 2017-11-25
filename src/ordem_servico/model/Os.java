@@ -1,9 +1,8 @@
 package ordem_servico.model;
 
 import java.io.Serializable;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Os implements Serializable{
 
@@ -18,24 +17,29 @@ public class Os implements Serializable{
     private Integer idUsuario;
     private Integer idCliente;
     protected transient Dados dados = new Dados();
+    private transient final String arquivo = "os.txt";
 
     public Os() {
 
     }
 
-    public Os(Integer id) throws SQLException {
-        ResultSet rs = dados.busca("SELECT * FROM os WHERE id= " + id.toString());
-        if (rs.next()) {
-            this.id = rs.getInt(1);
-            this.titulo = rs.getString(2);
-            this.dataAbertura = rs.getString(3);
-            this.prazo = rs.getString(4);
-            this.dataFinalizado = rs.getString(5);
-            this.servico = rs.getString(6);
-            this.total = rs.getFloat(7);
-            this.idTipo = rs.getInt(8);
-            this.idUsuario = rs.getInt(9);
-            this.idCliente = rs.getInt(10);
+    public Os(Integer id) {
+        ArrayList<Object> listaObj = dados.lerTodos(arquivo);
+        Os os;
+        for(Object objeto:listaObj){
+            os = (Os) objeto;
+            if(Objects.equals(os.getId(), id)){
+                this.id = os.id;
+                this.titulo = os.titulo;
+                this.dataAbertura = os.dataAbertura;
+                this.prazo = os.prazo;
+                this.dataFinalizado = os.dataFinalizado;
+                this.servico = os.servico;
+                this.total = os.total;
+                this.idTipo = os.idTipo;
+                this.idUsuario = os.idUsuario;
+                this.idCliente = os.idCliente;
+            }
         }
     }
 
@@ -99,7 +103,7 @@ public class Os implements Serializable{
         return idTipo;
     }
 
-    protected void setIdTipo(Integer idTipo) {
+    public void setIdTipo(Integer idTipo) {
         this.idTipo = idTipo;
     }
 
@@ -119,54 +123,47 @@ public class Os implements Serializable{
         this.idCliente = idCliente;
     }
 
-    protected boolean insertOs() {
-        boolean retorno = (dados.executa("INSERT INTO os(titulo,data_abertura,prazo,data_finalizado,servico,total,id_tipo,id_usuario,id_cliente) "
-                + "VALUES('" + titulo + "','" + dataAbertura + "','" + prazo + "','" + dataFinalizado + "','" + servico + "'," + total + "," + idTipo + "," + idUsuario + "," + idCliente + ")"));
-        if (retorno) {
-            setId(getIdInserido());
-        }
-        return retorno;
+    public boolean insertOs() {
+        ArrayList<Object> listaAtual = dados.lerTodos(arquivo);
+        this.setId(listaAtual.size()+1);
+        listaAtual.add(this);
+        return dados.escrever(arquivo, listaAtual);
     }
 
-    protected boolean updateOs() {
-        return (dados.executa("UPDATE os SET titulo='" + titulo + "', data_abertura='" + dataAbertura + "', prazo='" + prazo + "', data_finalizado='" + dataFinalizado + "', "
-                + "servico='" + servico + "', total=" + total + ", id_tipo=" + idTipo + ", id_usuario=" + idUsuario + ", id_cliente=" + idCliente + " WHERE id=" + id + ""));
-    }
-
-    protected boolean deleteOs() {
-        return (dados.executa("DELETE FROM os WHERE id=" + id));
-    }
-
-    private int getIdInserido() {
-        ResultSet rs;
-        try {
-            rs = dados.busca("SELECT id FROM os ORDER BY id DESC LIMIT 1");
-            if (rs.next()) {
-                return (rs.getInt(1));
-            }
-        } catch (SQLException ex) {
-            System.err.println("Erro SQL inserido os: " + ex);
-        } catch (Exception e) {
-            System.err.println("Erro SQL inserido os: " + e);
-        }
-        return 0;
-    }
-
-    private ArrayList<Os> buscaGeral(String sql) throws SQLException {
-        ArrayList<Os> listOs = new ArrayList();
-        ResultSet rsOs;
+    public boolean updateOs() {
+        ArrayList<Object> listaObj = dados.lerTodos(arquivo);
         Os os;
-        rsOs = dados.busca(sql);
-        while (rsOs.next()) {
-            os = new Os(rsOs.getInt(1));
-            listOs.add(os);
+        for(Object objeto:listaObj){
+            os = (Os) objeto;
+            if(os.getId().equals(this.id)){
+                listaObj.remove(objeto);
+                listaObj.add(this);
+                return dados.escrever(arquivo, listaObj);
+            }
         }
-        return listOs;
+        return false;
     }
 
-    public ArrayList<Os> selectAll() throws SQLException {
-        String sql = "SELECT id FROM os ORDER BY id DESC";
-        return buscaGeral(sql);
+    public boolean deleteOs() {
+        ArrayList<Object> listaObj = dados.lerTodos(arquivo);
+        Os os;
+        for(Object objeto:listaObj){
+            os = (Os) objeto;
+            if(os.getId().equals(this.id)){
+                listaObj.remove(objeto);
+                return dados.escrever(arquivo, listaObj);
+            }
+        }
+        return false;
+    }
+
+    public ArrayList<Os> selectAll(){
+        ArrayList<Object> listaObj = dados.lerTodos(arquivo);
+        ArrayList<Os> listaOs = new ArrayList();
+        for(Object objeto:listaObj){
+            listaOs.add((Os) objeto);
+        }
+        return listaOs;
     }
 
 }
