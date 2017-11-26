@@ -277,6 +277,11 @@ public class OsView extends javax.swing.JFrame {
         btnFinalizar.setBackground(new java.awt.Color(51, 204, 0));
         btnFinalizar.setForeground(new java.awt.Color(255, 255, 255));
         btnFinalizar.setText("Finalizar");
+        btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Atualizar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -317,6 +322,11 @@ public class OsView extends javax.swing.JFrame {
         );
 
         btnHistorico.setText("Histórico");
+        btnHistorico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHistoricoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelDetalhesLayout = new javax.swing.GroupLayout(panelDetalhes);
         panelDetalhes.setLayout(panelDetalhesLayout);
@@ -507,12 +517,20 @@ public class OsView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        osController.btnAtualizar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tabelaOsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaOsMouseClicked
         osController.tableClienteClick(evt);
     }//GEN-LAST:event_tabelaOsMouseClicked
+
+    private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
+        osController.btnFinalizar();
+    }//GEN-LAST:event_btnFinalizarActionPerformed
+
+    private void btnHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoricoActionPerformed
+        osController.btnHistoricoClick();
+    }//GEN-LAST:event_btnHistoricoActionPerformed
 
     /**
      * @param args the command line arguments

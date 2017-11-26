@@ -24,6 +24,7 @@ public class Usuario extends Pessoa implements Serializable{
                 this.id = usuario.id;
                 this.email = usuario.email;
                 this.senha = usuario.senha;
+                this.nome = usuario.nome;
             }
         }
     }
@@ -111,7 +112,7 @@ public class Usuario extends Pessoa implements Serializable{
         for(Object objeto:listaObj){
             usuario = (Usuario) objeto;
             if(usuario.getEmail().equals(this.getEmail()) && usuario.getSenha().equals(this.getSenha())){
-                this.id = usuario.id;
+                this.id = usuario.getId();
                 return true;
             }
         }

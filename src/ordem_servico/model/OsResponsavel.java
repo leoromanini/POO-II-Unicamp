@@ -78,5 +78,17 @@ public class OsResponsavel implements Serializable{
         }
         return listaOsResponsavel;
     }
+    
+    public ArrayList<OsResponsavel> selectByOs(Integer idOs){
+        ArrayList<Object> listaObj = dados.lerTodos(arquivo);
+        ArrayList<OsResponsavel> listaOsResponsavel = new ArrayList();
+        for(Object objeto:listaObj){
+            OsResponsavel osResponsavel = (OsResponsavel) objeto;
+            if(osResponsavel.getIdOs().equals(idOs)){
+                listaOsResponsavel.add(osResponsavel);
+            }
+        }
+        return listaOsResponsavel;
+    }
 
 }

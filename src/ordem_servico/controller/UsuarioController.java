@@ -13,16 +13,11 @@ import ordem_servico.view.UsuarioView;
 public class UsuarioController {
     private UsuarioView usuarioView;
     private Usuario usuario;
-
-    public UsuarioController() {
-        usuarioView = new UsuarioView();
-        usuarioView.setVisible(true);
-    }
     
     public UsuarioController(UsuarioView v){
         usuario = new Usuario();
         usuarioView = v;
-        
+        usuarioView.setVisible(true);
         usuarioView.setLocationRelativeTo(null);
         usuarioView.getPanelDetalhes().setVisible(false);
         usuarioView.getPanelNovo().setVisible(false);

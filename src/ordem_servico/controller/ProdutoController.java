@@ -10,15 +10,11 @@ import ordem_servico.view.ProdutoView;
 public class ProdutoController {
     private ProdutoView produtoView;
     private Produto produto;
-    
-    public ProdutoController(){
-        produtoView = new ProdutoView();
-        produtoView.setVisible(true);
-    }
-    
+        
     public ProdutoController(ProdutoView v){
         produtoView = v;
         produto = new Produto();
+        produtoView.setVisible(true);
         produtoView.getPanelDetalhes().setVisible(false);
         produtoView.getPanelNovo().setVisible(false);
         produtoView.setLocationRelativeTo(null);

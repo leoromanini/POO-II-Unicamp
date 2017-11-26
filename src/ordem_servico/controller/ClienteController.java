@@ -5,22 +5,18 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ordem_servico.model.Cliente;
 import ordem_servico.view.ClienteView;
+import ordem_servico.view.OsNovoView;
 
 public class ClienteController {
 
     private Cliente cliente;
     private ClienteView clienteView;
 
-    public ClienteController() {
-        clienteView = new ClienteView();
-        clienteView.setVisible(true);
-    }
-
     public ClienteController(ClienteView v) {
         this.cliente = new Cliente();
         clienteView = v;
         buscarTodosClientes();
-
+        clienteView.setVisible(true);
         clienteView.setLocationRelativeTo(null);
         clienteView.getPanelDetalhes().setVisible(false);
     }
@@ -203,5 +199,10 @@ public class ClienteController {
             }
 
         }
+    }
+    
+    public void btnCriarOsClick(){
+        OsNovoView novoView = new OsNovoView();
+       novoView.carregarInformacoes(cliente.getId());
     }
 }

@@ -35,7 +35,6 @@ public class OsSoftware extends Os implements Serializable{
 
     public boolean insertOsSoftware() {
         ArrayList<Object> listaAtual = dados.lerTodos(arquivo);
-        this.setId(listaAtual.size()+1);
         listaAtual.add(this);
         return dados.escrever(arquivo, listaAtual);
     }

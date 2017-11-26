@@ -177,6 +177,7 @@ public class ClienteView extends javax.swing.JFrame {
         labelTelefone = new javax.swing.JFormattedTextField();
         labelCelular = new javax.swing.JFormattedTextField();
         btnCadastrar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -341,6 +342,15 @@ public class ClienteView extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(0, 204, 51));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Criar OS");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelDetalhesLayout = new javax.swing.GroupLayout(panelDetalhes);
         panelDetalhes.setLayout(panelDetalhesLayout);
         panelDetalhesLayout.setHorizontalGroup(
@@ -369,7 +379,8 @@ public class ClienteView extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addComponent(labelTelefone))
                     .addGroup(panelDetalhesLayout.createSequentialGroup()
-                        .addGap(284, 284, 284)
+                        .addComponent(jButton1)
+                        .addGap(190, 190, 190)
                         .addComponent(btnAtualizar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnExcluir)
@@ -412,7 +423,8 @@ public class ClienteView extends javax.swing.JFrame {
                 .addGroup(panelDetalhesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAtualizar)
                     .addComponent(btnExcluir)
-                    .addComponent(btnCadastrar))
+                    .addComponent(btnCadastrar)
+                    .addComponent(jButton1))
                 .addGap(9, 9, 9))
         );
 
@@ -478,6 +490,10 @@ public class ClienteView extends javax.swing.JFrame {
         clienteController.btnCadastrarClick();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        clienteController.btnCriarOsClick();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -520,6 +536,7 @@ public class ClienteView extends javax.swing.JFrame {
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnRedefinir;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;

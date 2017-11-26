@@ -4,31 +4,31 @@ package ordem_servico.controller;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ordem_servico.model.Cliente;
 import ordem_servico.model.Item;
 import ordem_servico.model.Os;
 import ordem_servico.model.OsHardware;
+import ordem_servico.model.OsResponsavel;
 import ordem_servico.model.OsSoftware;
 import ordem_servico.model.Usuario;
+import ordem_servico.view.OsResponsavelView;
 import ordem_servico.view.OsView;
 
 public class OsController {
     private Os os;
     private OsView osView;
     
-    public OsController(){
-        osView = new OsView();
-        osView.setVisible(true);
-    }
-    
+        
     public OsController(OsView v){
         os = new Os();
         osView = v;   
-        
+        osView.setVisible(true);
         osView.setLocationRelativeTo(null);
         osView.getPanelDetalhes().setVisible(false);
+        listResponsaveis();
         buscarTodasOs();
     }
     
@@ -65,6 +65,12 @@ public class OsController {
             Usuario usuario = new Usuario(os.getIdUsuario());
             Cliente cliente = new Cliente(os.getIdCliente());
             
+            if(os.getDataFinalizado() == null){
+                osView.getjPanel1().setVisible(true);
+            }else{
+                osView.getjPanel1().setVisible(false);
+            }
+            
             osView.getLbAbertura().setText(os.getDataAbertura());
             osView.getLbCliente().setText(cliente.getNome());
             osView.getLbFinalizado().setText(os.getDataFinalizado());
@@ -96,12 +102,17 @@ public class OsController {
     
     private boolean atualizarOs(Integer id) {
         if (id > 0) {
-            os = new Os();
-            Item item = (Item) osView.getListResponsavel().getSelectedItem();
-            os.setId(id);            
+            os = new Os(id);
+            OsResponsavel osResponsavel = new OsResponsavel();
+            
+            Item item = (Item) osView.getListResponsavel().getSelectedItem();          
             os.setIdUsuario(Integer.parseInt((String) item.getValue()));
-            buscarTodasOs();
-            return os.updateOs();
+            SimpleDateFormat dt = new SimpleDateFormat( "dd/MM/yyyy" );
+            osResponsavel.setData(dt.format(new Date()));
+            osResponsavel.setIdOs(id);
+            osResponsavel.setIdUsuario(os.getIdUsuario());
+            
+            return os.updateOs() && osResponsavel.insertOsResponsavel();
         }
         return false;
     }
@@ -109,9 +120,13 @@ public class OsController {
     private boolean finalizarOs(Integer id){
         if(id > 0){
             os = new Os(id);
-            os.setDataFinalizado(new SimpleDateFormat( "dd/MM/yyyy" ).toString());
-            buscarTodasOs();
-            return os.updateOs();
+            OsResponsavel osResponsavel = new OsResponsavel();
+            SimpleDateFormat dt = new SimpleDateFormat( "dd/MM/yyyy" );
+            os.setDataFinalizado(dt.format(new Date()));      
+            osResponsavel.setData(dt.format(new Date()));
+            osResponsavel.setIdOs(id);
+            osResponsavel.setIdUsuario(os.getIdUsuario());
+            return os.updateOs() && osResponsavel.insertOsResponsavel();
         }
         return false;
     }
@@ -119,6 +134,7 @@ public class OsController {
     public void btnAtualizar(){
         try{
             if(atualizarOs(os.getId())){
+                buscarTodasOs();
                 JOptionPane.showMessageDialog(null, "OS Atualizada", "Feito", JOptionPane.INFORMATION_MESSAGE);                
             }else{
                 JOptionPane.showMessageDialog(null, "Não foi possivel atualizar a OS, tente novamente mais tarde", "Ops", JOptionPane.ERROR_MESSAGE);
@@ -131,6 +147,7 @@ public class OsController {
     public void btnFinalizar(){
         try{
             if(finalizarOs(os.getId())){
+                buscarTodasOs();
                 JOptionPane.showMessageDialog(null, "OS Finalizada", "Feito", JOptionPane.INFORMATION_MESSAGE);                
             }else{
                 JOptionPane.showMessageDialog(null, "Não foi possivel finalizar a OS, tente novamente mais tarde", "Ops", JOptionPane.ERROR_MESSAGE);
@@ -151,7 +168,12 @@ public class OsController {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Houve um problema geral no detalhamento. Para nerds: " + e, "Ops", JOptionPane.ERROR_MESSAGE);
             }
-
+            
         }
+    }
+    
+    public void btnHistoricoClick(){
+        OsResponsavelView osResponsavelView = new OsResponsavelView();
+        osResponsavelView.listarOsResponsavel(this.os.getId());
     }
 }
